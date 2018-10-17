@@ -16,25 +16,25 @@ defaults:
 
 menu:
   - title: Overview
-    url: 2017-11-15/index
+    url: index
   - title: Schedule
-    url: 2017-11-15/schedule
+    url: schedule
   - title: Pre-course material
-    url: 2017-11-15/precourse
+    url: precourse
   - title: Travel info
-    url: 2017-11-15/travel
+    url: travel
   - title: Labs
     submenus:
       - title: Data Quality Assessment
-        url: 2017-11-15/exercises/Exercise_Data_Quality_Assessment
+        url: exercises/Exercise_Data_Quality_Assessment
       - title: K-mer and Contamination Analysis
-        url: 2017-11-15/exercises/Exercise_K-mer_and_Contamination_Analysis
+        url: exercises/Exercise_K-mer_and_Contamination_Analysis
       - title: Illumina Assembly
-        url: 2017-11-15/exercises/Exercise_Illumina_Assembly
+        url: exercises/Exercise_Illumina_Assembly
       - title: Long read Assembly
-        url: 2017-11-15/exercises/Exercise_Long_Read_Assembly
+        url: exercises/Exercise_Long_Read_Assembly
       - title: Assembly Validation
-        url: 2017-11-15/exercises/Exercise_Assembly_Validation
+        url: exercises/Exercise_Assembly_Validation
       - title: Group Exercise
-        url: 2017-11-15/exercises/Exercise_Diatom_assembly_project
+        url: exercises/Exercise_Diatom_assembly_project
 
