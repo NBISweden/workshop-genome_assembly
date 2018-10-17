@@ -1,14 +1,14 @@
 ---
 layout: default
-title:  'De Novo Genome Assembly Nov 14-16 2016'
+title:  'De Novo Genome Assembly Nov 15-17 2017'
 ---
- 
+
 
 # De Novo Genome Assembly
 
-Held in Uppsala November 14-16 2016.
+Held in Uppsala November 15-17 2017.
 
-## Important Links 
+## Important Links
 [Uppmax login instructions](login_instructions)  
 [Schedule](schedule)
 
@@ -28,4 +28,3 @@ Held in Uppsala November 14-16 2016.
 [IGV (Integrative Genomics Viewer) Home](https://www.broadinstitute.org/igv/)  
 [Samtools Home](http://www.htslib.org/)  
 [SeqAnswers - Next-generation sequencing forum](http://seqanswers.com/)  
-[Biosupport.se - Sweden centered bioinformatics Q&A](https://biosupport.se/)   

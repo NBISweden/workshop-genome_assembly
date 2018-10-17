@@ -11,7 +11,7 @@ The first step of this lab is to open a ssh connection to UPPMAX. To do this you
 
 Once you have started your terminal program, type in (change username to your own username):
 
-```
+```bash
 $ ssh -X username@milou.uppmax.uu.se
 ```
 
@@ -23,21 +23,21 @@ You should now get a welcoming message from Uppmax to show that you have success
 
 For this course, we have arranged for you to have one half of a node (=8 cores) each. To get this reservation you need to use the salloc command like this:
 
-```
-$ salloc -A g2016024 -t 08:00:00 -p core -n 8 -\-no-shell -\-reservation=check_below &
+```bash
+$ salloc -A g2017025 -t 08:00:00 -p core -n 8 --no-shell --reservation=check_below &
 ```
 
 where you should substitute “check_below” with one of these alternatives depending on the day.
 
-Monday 14th: `g2016024_14`
+Wednesday 15th: `g2017025_1`
 
-Tuesday 15th: `g2016024_15`
+Thursday 16th: `g2017025_2`
 
-Wednesday 16th: `g2016024_16`
+Friday 17th: `g2017025_3`
 
 Now check which node you got (replace *username* with your uppmax user name) like this:
 
-```
+```bash
 $ squeue -u username
 ```
 
@@ -45,7 +45,7 @@ Under Nodelist you will see the name of the node that has been reserved for you.
 
 Connect to the node you were dealt like this:
 
-```
+```bash
 $ ssh -X m34
 ```
 
