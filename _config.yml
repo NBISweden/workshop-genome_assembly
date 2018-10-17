@@ -13,3 +13,13 @@ plugins:
 defaults:
   - values:
       logosnav: true
+
+menu:
+  - title: Overview
+    url: index
+  - title: Schedule
+    url: schedule
+  - title: Pre-course material
+    url: precourse
+  - title: Travel info
+    url: travel
