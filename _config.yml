@@ -17,10 +17,10 @@ defaults:
 menu:
   - title: Overview
     url: index
+  - title: Information
+    url: information
   - title: Schedule
     url: schedule
-  - title: Pre-course material
-    url: precourse
   - title: Travel info
     url: travel
   - title: Labs

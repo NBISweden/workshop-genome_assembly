@@ -41,23 +41,3 @@ Due to limited space the course can accommodate a maximum of 14 participants.
 Please follow the link here: [SciLifeLab Events Page - De Novo Genome Assembly](https://www.scilifelab.se/events/de-novo-genome-assembly/)
 
 
-## Important Links
-[Uppmax login instructions](login_instructions)
-[Schedule](schedule)
-
-## Maps & Travel Info
-[Map over Uppsala](http://www.uppsalakartan.se/)
-[Map over Uppsala biomedical center, BMC](bmc)
-[Travel Info](travel)
-[TO DO AND EAT in Uppsala](http://www.destinationuppsala.se/en/)
-
-## Helpful Things
-[Linux cheat sheet](files/linux-cheat-sheet.pdf)
-[UPPMAX cheat sheet](files/uppmax-cheat-sheet.png)
-[Mac keyboard layout](../common/mac-keyboard)
-
-## External Resources
-[Mac keyboard layouts](../common/mac-keyboard)
-[IGV (Integrative Genomics Viewer) Home](https://www.broadinstitute.org/igv/)
-[Samtools Home](http://www.htslib.org/)
-[SeqAnswers - Next-generation sequencing forum](http://seqanswers.com/)
