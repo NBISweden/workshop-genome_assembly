@@ -21,10 +21,10 @@ system of your computer (MacOSX, Windows or Linux). On MacOSX you should use Ter
 [MobaXterm](http://mobaxterm.mobatek.net). For Linux it depends on which version of 
 Linux you are running, but it should be fairly obvious which program to use.
 
-Once you have started your terminal program, type in (change username to your own username):
+Once you have started your terminal program, type in (change `<username>` to your own username):
 
 ```bash
-$ ssh -X username@milou.uppmax.uu.se
+$ ssh -X <username>@rackham.uppmax.uu.se
 ```
 
 and give your password when prompted. As you type the password, nothing will show on 
@@ -36,11 +36,11 @@ logged in.
 
 ## 2. Logging into the reserved node
 
-For this course, we have arranged for you to have one half of a node (=8 cores) each. 
+For this course, we have arranged for you to have one half of a node (=10 cores) each. 
 To get this reservation you need to use the salloc command like this:
 
 ```bash
-$ salloc -A <reservation> -t 08:00:00 -p core -n 8 --no-shell --reservation=<reservation_id> &
+$ salloc -A <reservation> -t 08:00:00 -p core -n 10 --no-shell --reservation=<reservation_id> &
 ```
 
 where you should substitute `<reservation>` with `` and `<reservation_id>` with one of these 
@@ -68,11 +68,11 @@ $ ssh -X m34
 ```
 
 **Note**: there is a uppmax specific tool called jobinfo that supplies the same kind of 
-information as squeue that you can use as well ( *$ jobinfo -u username*).
+information as squeue that you can use as well ( `$ jobinfo -u username`).
 
 You are now logged in to your reserved node, and there is no need for you to use the 
 SLURM queuing system. You can now continue with the specific exercise instructions, 
-but **please remember to never use more than 8 cores** as you will be sharing a node 
+but **please remember to never use more than 10 cores** as you will be sharing a node 
 (i.e., a single computer) with someone else in the course and there are only 20 cores 
 available in total per node.
 
