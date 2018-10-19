@@ -5,16 +5,6 @@ title:  'De Novo Genome Assembly Workshop - Nov 20-22 2018'
 
 # De Novo Genome Assembly Workshop
 
-**Instructors:**
-
-**Henrik Lantz**, Uppsala University, SciLifeLab, NBIS, Elixir-SE.
-
-**Mahesh Binzer-Panchal**, Uppsala University, SciLifeLab, NBIS, Elixir-SE.
-
-**Lucile Soler**, Uppsala University, SciLifeLab, NBIS, Elixir-SE.
-
-**Jacques Dainat**, Uppsala University, SciLifeLab, NBIS, Elixir-SE.
-
 **Date and Location:**
 
 The workshop is held at the Uppsala Biomedical Center, Uppsala, Sweden, on November 20-22 2018.
