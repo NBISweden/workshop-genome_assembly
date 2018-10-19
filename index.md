@@ -36,6 +36,8 @@ are encouraged to bring their own laptops, but there will be computers to use fo
 
 Due to limited space the course can accommodate a maximum of 14 participants.
 
+Test your Unix comfort with these exercises: [NGS Introduction - Introduction to Linux](https://scilifelab.github.io/courses/ngsintro/1809/labs/linux-intro)
+
 ## Where to apply:
 
 Please follow the link here: [SciLifeLab Events Page - De Novo Genome Assembly](https://www.scilifelab.se/events/de-novo-genome-assembly/)
