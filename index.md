@@ -28,6 +28,14 @@ and lectures. Participants are taken through all steps of genome assembly, from 
 data, through assembly, to validation of assemblies. After the course, the student will be familiar
 with common practices in genome assembly projects, and how to deal with common pitfalls.
 
+## Prerequisites:
+
+This is an advanced course. Participants must be comfortable navigating a Linux shell and executing 
+programs from the command line. Previous experience from working with NGS data is beneficial. Applicants 
+are encouraged to bring their own laptops, but there will be computers to use for participants unable to do so.
+
+Due to limited space the course can accommodate a maximum of 14 participants.
+
 ## Where to apply:
 
 Please follow the link here: [SciLifeLab Events Page - De Novo Genome Assembly](https://www.scilifelab.se/events/de-novo-genome-assembly/)
