@@ -37,10 +37,4 @@ menu:
         url: exercises/Exercise_Assembly_Validation
       - title: Group Exercise
         url: exercises/Exercise_Diatom_assembly_project
-  - title: Reference
-    submenus:
-      - title: Sequencing Technologies
-        url: reference/sequencing_technologies.md
-      - title: File formats
-        url: reference/file_formats.md
 
