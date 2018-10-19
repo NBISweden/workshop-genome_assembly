@@ -1,6 +1,6 @@
 # Getting started in Genome Assembly
 
-## Objectives: [Slides](../slides/genome_properties.pdf)
+## Objectives:
 
 * Understand how to design a de novo assembly project.
 * Understand which properties of the genome are important to consider.
@@ -10,9 +10,13 @@
 * Understand how to make a pilot project.
 * Understand what is easy and difficult to attain with de novo assembly.
 
+## Slides
+
+[Presentation](../slides/genome_properties.pdf)
+
 ## Exercises:
 
-### Task 1: Test your connection to uppmax.
+### Test: Test your connection to uppmax.
 
 Follow the instructions to log into the [UPPMAX cluster Rackham](../uppmax_login.md).
 
@@ -23,6 +27,6 @@ module load bioinfo-tools FastQC
 fastqc
 ```
 
-### Task 2: Describe your own project
+### Task 1: Describe your own project
 
 
