@@ -17,13 +17,13 @@ defaults:
 menu:
   - title: Overview
     url: index
-  - title: Information
-    url: information
+  - title: Uppmax Login
+    url: uppmax_login
   - title: Schedule
     url: schedule
   - title: Travel info
     url: travel
-  - title: Labs
+  - title: Workshop Material
     submenus:
       - title: Data Quality Assessment
         url: exercises/Exercise_Data_Quality_Assessment
