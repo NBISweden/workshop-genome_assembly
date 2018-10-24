@@ -23,9 +23,9 @@ Please note this timetable is approximate and subject to change.
 :-------------|:----------------
 Day 1                 |
 09.00 - 09.15         | Introduction
-09.15 - 10.00         | [**Session 1**](sessions/session_1): Getting started in Genome Assembly
+09.15 - 10.00         | **Session 1**: [Getting started in Genome Assembly](slides/session_1)
 10.00 - 10.15         | Coffee break / fika
-10.15 - 10.45         | Session 1 Exercises/Discussion
+10.15 - 10.45         | Session 1 [Exercises/Discussion](exercises/exercise_1)
 10.45 - 11.15         | [**Session 2**](sessions/session_2): Sequence Data Quality Assessment - Corruption, Coverage, and Subsampling
 11.15 - 12.00         | Session 2 Exercises/Discussion
 12.00 - 13.00         | Lunch
