@@ -22,7 +22,7 @@ ls -R
 # Use the **relative** paths of the files with md5sum and redirect STDOUT to a file in your working directory
 md5sum */* > "$WORKDIR/checksums.md5"
    {% endhighlight %}
-      
+   
    Advanced solution (this is a more generally applicable solution):
    
    {% highlight bash %}
