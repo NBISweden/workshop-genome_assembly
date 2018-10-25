@@ -9,30 +9,30 @@ date: 22nd November 2018
 ## Exercises
 
 1. Change directory to the exercise data folder (`/home/data/byod/Sequence_Assessment`). Use `md5sum` to calculate the checksum of all the data files in the exercise folder. Redirect the checksum values to a file called **checksums.md5** in your working directory. Change directory to your working directory.
-	
-	<details>
-	<summary> Solution - click to expand </summary>
-	
-	Simple solution:
-	
-	{% highlight bash %}
-	# Change to working directory
-	cd /home/data/byod/Sequence_Assessment/
-	# Check contents of folder
-	ls -R
-	# Use the **relative** paths of the files with md5sum and redirect STDOUT to a file in your working directory
-	md5sum */* > "$WORKDIR/checksums.md5"
-	{% endhighlight %}
-	
-	Advanced solution (this is a more generally applicable solution):
-	
-	{% highlight bash %}
-	cd /home/data/byod/Sequence_Assessment/
-	# Get the **relative** paths of the files and use md5sum. Redirect the output to a file and screen
-	find -type "f" -exec md5sum {} \; | tee $WORKDIR/checksums.md5 # redirected output
-	{% endhighlight %}
-	
-	</details>
+
+<details>
+<summary> Solution - click to expand </summary>
+
+Simple solution:
+
+{% highlight bash %}
+# Change to working directory
+cd /home/data/byod/Sequence_Assessment/
+# Check contents of folder
+ls -R
+# Use the **relative** paths of the files with md5sum and redirect STDOUT to a file in your working directory
+md5sum */* > "$WORKDIR/checksums.md5"
+{% endhighlight %}
+
+Advanced solution (this is a more generally applicable solution):
+
+{% highlight bash %}
+cd /home/data/byod/Sequence_Assessment/
+# Get the **relative** paths of the files and use md5sum. Redirect the output to a file and screen
+find -type "f" -exec md5sum {} \; | tee $WORKDIR/checksums.md5 # redirected output
+{% endhighlight %}
+
+</details>
 
 2. Copy the exercise files to your working directory, but interrupt transfer with `ctrl + c`.
 
