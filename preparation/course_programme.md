@@ -25,7 +25,7 @@ Day 2                 |
 13.00 - 13.30         | [**Session 7**](lectures/session_7.md): Assembly Validation - Assembly Graphs and contamination detection
 13.30 - 15.00         | Session 7 Exercises/Discussion 
 15.00 - 15.15         | Coffee break / fika
-15.15 - 15.45         | [**Session 8**](lectures/session_8.md): Assembly Validation - Gene space statistics and comparitive alignment (and wrap)
+15.15 - 15.45         | [**Session 8**](lectures/session_8.md): Assembly Validation - Assembly Completeness, Gene space statistics and comparitive alignment (and wrap)
 15.45 - 17.00         | Session 8 Exercises/Discussion
 Day 3                 |
 09.00 - 9.30          | Discussion of previous days exercises
@@ -209,6 +209,7 @@ Exercises:
 Time 30 m + 1hr 15 m
 
 Learning objectives:
+* Assessing completeness vs reads: KAT
 * Assessing Gene space statistics: Busco
 * Comparative assessment: Make and interpret Dot plots
 	- Mauve, Mummer, Gepard, D-Genies
