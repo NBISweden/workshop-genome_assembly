@@ -6,259 +6,326 @@ date: 22nd November 2018
 
 # Data Quality Assessment
 
-1. Run FastQC on your data. Then open the results using `firefox` or `fastqc`.
-	```bash
-	# Run FastQC with 4 threads on all the files in all the folders in this folder
-	fastqc -t 4 */*.fastq.gz
-	# Open all the FastQC reports in a browser
-	firefox */*_fastqc.html
-	```
+## Exercises
 
-	How many sequences are in each file?
+### Task 1.
 
-	<details>
-	<summary> Solution - click to expand </summary>
+Run FastQC on your data. Then open the results using `firefox` or `fastqc`.
 
-	* Bacteria/bacteria_Str1_R{1,2}.fastq.gz: 766616 sequences
-	* Bacteria/bacteria_Str2_R{1,2}.fastq.gz: 957939 sequences
-	* SRR492065/SRR492065_{1,2}.fastq.gz: 5354356 sequences
-	* E01/E01_1_135x.fastq.gz: 87217 sequences
+{% highlight bash %}
+module load bioinfo-tools FastQC/0.11.5
+fastqc --help
+{% endhighlight %}
 
-	</details>
+How many sequences are in each fastq file?
 
-2. What is the average GC% in each data set?
+<details>
+<summary> Solution - click to expand </summary>
+<div markdown="1">
 
-	<details>
-	<summary> Solution - click to expand </summary>
+{% highlight bash %}
+fastqc -t 6 */*.fastq.gz
+{% endhighlight %}
 
-	* Bacteria/bacteria_Str1_R{1,2}.fastq.gz: 40%
-	* Bacteria/bacteria_Str2_R{1,2}.fastq.gz: 40%
-	* SRR492065/SRR492065_{1,2}.fastq.gz: 40%
-	* E01/E01_1_135x.fastq.gz: 49%
+**Enterococcus_faecalis/SRR492065_{1,2}.fastq.gz**: 5354356 each
 
-	</details>
+**Escherichia_coli/ERR022075_{1,2}.fastq.gz**: 22720100 each
 
-3. Which quality score encoding is used?
+**Escherichia_coli/Ecoli_pacbio.fastq.gz**: 87225
 
-	<details>
-	<summary> Solution - click to expand </summary>
+</div>
+</details>
 
-	Sanger / Illumina 1.9
+### Task 2.
 
-	</details>
+What is the average GC% in each data set?
 
-4. What does a quality score of 20 (Q20) mean?
+<details>
+<summary> Solution - click to expand </summary>
+<div markdown="1">
 
-	<details>
-	<summary> Solution - click to expand </summary>
+**Enterococcus_faecalis/SRR492065_{1,2}.fastq.gz**: 40%
 
-	An expectation of 1 error in 100bp.
+**Escherichia_coli/ERR022075_{1,2}.fastq.gz**: 49%
 
-	</details>
+**Escherichia_coli/Ecoli_pacbio.fastq.gz**: 49%
 
-5. What does a quality score of 40 (Q40) mean?
+</div>
+</details>
 
-	<details>
-	<summary> Solution - click to expand </summary>
+### Task 3.
 
-	An expectation of 1 error in 10000bp.
+Which quality score encoding is used?
 
-	</details>
+<details>
+<summary> Solution - click to expand </summary>
 
-6. For **Bacteria/bacteria_Str1_R{1,2}.fastq.gz**, what percentage should the G and C lines be at in the per base sequence plot, and why?
+Sanger / Illumina 1.9
 
-	<details>
-	<summary> Solution - click to expand </summary>
+</details>
 
-	20, because the mean GC is 40% and G and C should be in equal proportions and therefore half of the mean GC%.
+### Task 4.
 
-	</details>
+What does a quality score of 20 (Q20) mean?
 
-7. For **Bacteria/bacteria_Str1_R{1,2}.fastq.gz**, what percentage should the A and T lines be at in the per base sequence plot, and why?
+<details>
+<summary> Solution - click to expand </summary>
 
-	<details>
-	<summary> Solution - click to expand </summary>
+An expectation of 1 error in 100bp.
 
-	30, because the mean AT is 60% and A and T should be in equal proportions and therefore half of the mean AT%.
+</details>
 
-	</details>
+### Task 5.
 
-8. What distribution should the per base sequence plot follow?
+What does a quality score of 40 (Q40) mean?
 
-	<details>
-	<summary> Solution - click to expand </summary>
+<details>
+<summary> Solution - click to expand </summary>
 
-	A Uniform distribution.
+An expectation of 1 error in 10000bp.
 
-	</details>
+</details>
 
-9. What distribution should the per base GC plot follow?
+### Task 6.
 
-	<details>
-	<summary> Solution - click to expand </summary>
+What distribution should the per base sequence plot follow?
 
-	A Gaussian/Normal distribution.
+<details>
+<summary> Solution - click to expand </summary>
 
-	</details>
+A Uniform distribution.
 
-10. What value should the per base GC distribution be centered on?
+</details>
 
-	<details>
-	<summary> Solution - click to expand </summary>
+### Task 7.
 
-	Average GC content.
+What value should the per base GC distribution be centered on?
 
-	</details>
+<details>
+<summary> Solution - click to expand </summary>
 
-11. How much duplication is present in **Bacteria/bacteria_Str1_R{1,2}.fastq.gz**?
+Average GC content.
 
-	<details>
-	<summary> Solution - click to expand </summary>
+</details>
 
-	24% (R1) and 15% (R2).
+### Task 8.
 
-	</details>
+How much duplication is present in each fastq file?
 
-12. What is adapter read through?
+<details>
+<summary> Solution - click to expand </summary>
+<div markdown="1">
 
-	<details>
-	<summary> Solution - click to expand </summary>
+**Enterococcus_faecalis/SRR492065_{1,2}.fastq.gz**: 29.4% and 17.24%
 
-	When the sequence reads past the insert into the adapter sequence on the other end.
+**Escherichia_coli/ERR022075_{1,2}.fastq.gz**: 61.71% and 27.87%
 
-	</details>
+**Escherichia_coli/Ecoli_pacbio.fastq.gz**: 0.12% but this value is uninformative for pacbio due to the error rate.
 
-13. Let's look at the adapter sequence in the **SRR492065/SRR492065_{1,2}.fastq.gz** fastq files. Illumina uses different adapters
+</div>
+</details>
+
+### Task 9.
+
+What is adapter read through?
+
+<details>
+<summary> Solution - click to expand </summary>
+
+When the sequence reads past the insert into the adapter sequence on the other end.
+
+</details>
+
+### Task 10.
+
+Let's look at the adapter sequence in the **Enterococcus_faecalis/SRR492065_{1,2}.fastq.gz** fastq files. Illumina uses different adapters
 for different libraries. It is important to know which adapter sequence it is. Since this is public data, it is sometimes difficult to
 find out what the adapters were. Use `bbmerge` to discover the adapter sequence.
-	```bash
-	bbmerge.sh in=<read1.fastq.gz> in2=<read2.fastq.gz> outa=adapters.fa
-	more adapters.fa
-	```
 
-	<details>
-	<summary> Solution - click to expand </summary>
+{% highlight bash %}
+module load bioinfo-tools bbmap/38.08
+bbmerge.sh --help
+{% endhighlight %}
 
-	```bash
-	bbmerge.sh in=SRR492065/SRR492065_1.fastq.gz in2=SRR492065/SRR492065_2.fastq.gz outa=adapters.fa
-	more adapters.fa
-	```
+<details>
+<summary> Solution - click to expand </summary>
 
-	```
-	>Read1_adapter
-	AGATCGGAAGAGCACACGTCTGAACTCCAGTCACCGATGTATNTCGTATGCCGTCTTNTGNTT
-	>Read2_adapter
-	AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT
-	```
-	</details>
+{% highlight bash %}
+bbmerge.sh in=Enterococcus_faecalis/SRR492065_1.fastq.gz in2=Enterococcus_faecalis/SRR492065_2.fastq.gz outa=adapters.fa
+more adapters.fa
+{% endhighlight %}
 
-14. Use the command below to view the reads that have matching adapter sequence in your files.
-	```bash
-	paste <( zcat SRR492065/SRR492065_1.fastq.gz ) <( zcat SRR492065/SRR492065_1.fastq.gz ) \
-	| grep -A2 -B1 --colour=always "AGATCGGAAGAGC" | less -SR
-	```
 
-	In the next step we will use Trimmomatic to trim adapters. It needs the correct adapter file. Use
-	`grep` to identify the necessary adapter file to use. Trimmomatic's adapter files can be found in
-	`/opt/byod/byod/Trimmomatic-0.36/adapters/`.
-	```bash
-	grep -B1 --colour=always "AGATCGGAAGAGCACACGTCTGAACTCC" /opt/byod/byod/Trimmomatic-0.36/adapters/*PE*.fa
-	grep -B1 --colour=always "AGATCGGAAGAGCGTCGTGTAGGGAAAG" /opt/byod/byod/Trimmomatic-0.36/adapters/*PE*.fa
-	```
+{% highlight bash %}
+>Read1_adapter
+AGATCGGAAGAGCACACGTCTGAACTCCAGTCACCGATGTATNTCGTATGCCGTCTTNTGNTT
+>Read2_adapter
+AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT
+{% endhighlight %}
 
-	Which adapter file should be used?
 
-	<details>
-	<summary> Solution - click to expand </summary>
+</details>
 
-	```bash
-	$ grep -B1 --colour=always "AGATCGGAAGAGCACACGTCTGAACTCC" /opt/byod/byod/Trimmomatic-0.36/adapters/*PE*.fa
-	/opt/byod/byod/Trimmomatic-0.36/adapters/TruSeq3-PE-2.fa->PE2_rc
-	/opt/byod/byod/Trimmomatic-0.36/adapters/TruSeq3-PE-2.fa:AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC
-	$ grep -B1 --colour=always "AGATCGGAAGAGCGTCGTGTAGGGAAAG" /opt/byod/byod/Trimmomatic-0.36/adapters/*PE*.fa
-	/opt/byod/byod/Trimmomatic-0.36/adapters/TruSeq2-PE.fa->PCR_Primer1_rc
-	/opt/byod/byod/Trimmomatic-0.36/adapters/TruSeq2-PE.fa:AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT
-	--
-	/opt/byod/byod/Trimmomatic-0.36/adapters/TruSeq3-PE-2.fa->PE1_rc
-	/opt/byod/byod/Trimmomatic-0.36/adapters/TruSeq3-PE-2.fa:AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTA
-	```
+### Task 11.
 
-	Therefore the file to use is:
+Use the command below to view the reads that have matching adapter sequence in your files.
 
-	```
-	/opt/byod/byod/Trimmomatic-0.36/adapters/TruSeq3-PE-2.fa
-	```
+{% highlight bash %}
+paste <( zcat Enterococcus_faecalis/SRR492065_1.fastq.gz ) <( zcat Enterococcus_faecalis/SRR492065_2.fastq.gz ) \
+| grep -A2 -B1 --colour=always "AGATCGGAAGAGC" | less -SR
+{% endhighlight %}
 
-	Since we have paired end data, we only use the files with PE in their name. Also as we are looking to remove adapter
-	read-through, we are searching for the reverse compliment of the adapter `*_rc`. These two sequences are only common
-	to one file, so we will use that one.
+In the next step we will use Trimmomatic to trim adapters. It needs the correct adapter file. Use
+`grep` to identify the necessary adapter file to use. Trimmomatic's adapter files can be found in
+`$TRIMMOMATIC_HOME/adapters/`.
 
-	</details>
+{% highlight bash %}
+module load bioinfo-tools trimmomatic/0.36
+ls $TRIMMOMATIC_HOME
+ls $TRIMMOMATIC_HOME/adapters
+grep -B1 --colour=always "AGATCGGAAGAGCACACGTCTGAACTCC" $TRIMMOMATIC_HOME/adapters/*PE*.fa
+grep -B1 --colour=always "AGATCGGAAGAGCGTCGTGTAGGGAAAG" $TRIMMOMATIC_HOME/adapters/*PE*.fa
+{% endhighlight %}
 
-15. Run Trimmomatic on **SRR492065/SRR492065_{1,2}.fastq.gz** to only remove adapters. How many reads were trimmed for adapters?
-	```bash
-	TRIMMOMATIC=/opt/byod/byod/Trimmomatic-0.36/trimmomatic-0.36.jar
-	ADAPTER_DB=/opt/byod/byod/Trimmomatic-0.36/adapters/TruSeq3-PE-2.fa
-	java -jar "$TRIMMOMATIC" PE SRR492065/SRR492065_1.fastq.gz SRR492065/SRR492065_2.fastq.gz \
-	SRR492065/SRR492065_1.clean_pair.fastq.gz SRR492065/SRR492065_1.clean_unpair.fastq.gz \
-	SRR492065/SRR492065_2.clean_pair.fastq.gz SRR492065/SRR492065_2.clean_unpair.fastq.gz \
-	ILLUMINACLIP:"$ADAPTER_DB":2:30:10
-	```
+Which adapter file should be used?
 
-	<details>
-	<summary> Solution - click to expand </summary>
+<details>
+<summary> Solution - click to expand </summary>
 
-	```
-	Input Read Pairs: 5354356 Both Surviving: 5339516 (99.72%) Forward Only Surviving: 11947 (0.22%) Reverse Only Surviving: 1888 (0.04%) Dropped: 1005 (0.02%)
-	```
+{% highlight bash %}
+$ grep -B1 --colour=always "AGATCGGAAGAGCACACGTCTGAACTCC" $TRIMMOMATIC_HOME/adapters/*PE*.fa
+/sw/apps/bioinfo/trimmomatic/0.36/rackham/adapters/TruSeq3-PE-2.fa->PE2_rc
+/sw/apps/bioinfo/trimmomatic/0.36/rackham/adapters/TruSeq3-PE-2.fa:AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC
+$ grep -B1 --colour=always "AGATCGGAAGAGCGTCGTGTAGGGAAAG" $TRIMMOMATIC_HOME/adapters/*PE*.fa
+/sw/apps/bioinfo/trimmomatic/0.36/rackham/adapters/TruSeq2-PE.fa->PCR_Primer1_rc
+/sw/apps/bioinfo/trimmomatic/0.36/rackham/adapters/TruSeq2-PE.fa:AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT
+--
+/sw/apps/bioinfo/trimmomatic/0.36/rackham/adapters/TruSeq3-PE-2.fa->PE1_rc
+/sw/apps/bioinfo/trimmomatic/0.36/rackham/adapters/TruSeq3-PE-2.fa:AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTA
+{% endhighlight %}
 
-	</details>
+Therefore the file to use is: `/sw/apps/bioinfo/trimmomatic/0.36/rackham/adapters/TruSeq3-PE-2.fa`.
 
-16. Run Kraken on **SRR492065/SRR492065_{1,2}.fastq**. What do you see? Is this consistent with what you see from `kat gcp`?
-	```bash
-	KRAKEN_DB=/home/data/byod/minikraken_20141208
-	kraken --threads 4 --db "$KRAKEN_DB" --fastq-input --gzip-compressed --paired <read_{1,2}.fastq.gz> > <kraken.tsv>
-	kraken-report --db "$KRAKEN_DB" <kraken.tsv> > <kraken.rpt>
-	ktImportTaxonomy <( cut -f2,3 <kraken.tsv> ) -o <krona.html>
-	```
+Since we have paired end data, we only use the files with PE in their name. Also as we are looking to remove adapter
+read-through, we are searching for the reverse compliment of the adapter `*_rc`. These two sequences are only common
+to one file, so we will use that one.
 
-	<details>
-	<summary> Solution - click to expand </summary>
+</details>
 
-	```bash
-	KRAKEN_DB=/home/data/byod/minikraken_20141208
-	kraken --threads 4 --db "$KRAKEN_DB" --fastq-input --gzip-compressed --paired SRR492065/SRR492065_{1,2}.fastq.gz > SRR492065.kraken.tsv
-	kraken-report --db "$KRAKEN_DB" SRR492065.kraken.tsv > SRR492065.kraken.rpt
-	ktImportTaxonomy <( cut -f2,3 SRR492065.kraken.tsv ) -o SRR492065.krona.html
-	firefox SRR492065.krona.html
-	```
+### Task 13.
 
-	To make an image open the html file, and click on the snapshot button. Then save the resulting image to `SRR492065.krona.svg`.
+Run Trimmomatic on **Enterococcus_faecalis/SRR492065_{1,2}.fastq.gz** to only remove adapters. How many reads were trimmed for adapters?
 
-	![A Krona plot of the Kraken analysis of SRR492065.](Data_QC_Exercises_17-10-23/SRR492065.krona.svg)
+{% highlight bash %}
+java -jar $TRIMMOMATIC_HOME/trimmomatic-0.36.jar PE Enterococcus_faecalis/SRR492065_1.fastq.gz Enterococcus_faecalis/SRR492065_2.fastq.gz \
+Enterococcus_faecalis/SRR492065_clean_paired_1.fastq.gz Enterococcus_faecalis/SRR492065_clean_unparied_1.fastq.gz \
+Enterococcus_faecalis/SRR492065_clean_paired_2.fastq.gz Enterococcus_faecalis/SRR492065_clean_unparied_2.fastq.gz \
+ILLUMINACLIP:$TRIMMOMATIC_HOME/adapters/TruSeq3-PE-2.fa:2:30:10
+{% endhighlight %}
 
-	The Kraken analysis is consistent with the KAT gcp analysis since it shows at least three organisms in the sample; Enterococcus, Staphylococcus, and Cutibacterium. Enterococcus also shows a higher abundance than both Staphylococcus and Cutibacterium, which are both in similar proportions.
+<details>
+<summary> Solution - click to expand </summary>
 
-	</details>
+{% highlight bash %}
+Input Read Pairs: 5354356 Both Surviving: 5339516 (99.72%) Forward Only Surviving: 11947 (0.22%) Reverse Only Surviving: 1888 (0.04%) Dropped: 1005 (0.02%)
+{% endhighlight %}
 
-17. Run Kraken on **Bacteria/bacteria_Str1_R{1,2}.fastq.gz**. This bacteria is a strain of Moritella viscosa. Why is the bacteria not identified here?
+</details>
 
-	<details>
-	<summary> Solution - click to expand </summary>
+### Task 14.
 
-	```bash
-	kraken --threads 4 --db "$KRAKEN_DB" --fastq-input --gzip-compressed --paired Bacteria/bacteria_Str1_R{1,2}.fastq.gz > bacteria_Str1.kraken.tsv
-	kraken-report --db "$KRAKEN_DB" bacteria_Str1.kraken.tsv > bacteria_Str1.kraken.rpt
-	ktImportTaxonomy <( cut -f2,3 bacteria_Str1.kraken.tsv ) -o bacteria_Str1.krona.html
-	firefox bacteria_Str1.krona.html
-	```
+Run Kraken on **Enterococcus_faecalis/SRR492065_{1,2}.fastq.gz**. What do you see?
 
-	To make an image open the html file, and click on the snapshot button. Then save the resulting image to `bacteria_Str1.krona.svg`.
+{% highlight bash %}
+module load bioinfo-tools Kraken2/2.0.7-beta-bc14b13
+KRAKEN_DB=/home/data/byod/minikraken_20141208
+kraken --threads 4 --db "$KRAKEN_DB" --fastq-input --gzip-compressed --paired <read_{1,2}.fastq.gz> > <kraken.tsv>
+kraken-report --db "$KRAKEN_DB" <kraken.tsv> > <kraken.rpt>
+ktImportTaxonomy <( cut -f2,3 <kraken.tsv> ) -o <krona.html>
+{% endhighlight %}
 
-	![A Krona plot of the Kraken analysis of SRR492065.](Data_QC_Exercises_17-10-23/bacteria_Str1.krona.svg)
+<details>
+<summary> Solution - click to expand </summary>
 
-	No species is identified here. This is because the database is not comprehensive enough to classify the bacteria in the sample.
-	Although a small portion is classified, this may be a close relative, or a false positive classification.
+{% highlight bash %}
+KRAKEN_DB=/home/data/byod/minikraken_20141208
+kraken --threads 4 --db "$KRAKEN_DB" --fastq-input --gzip-compressed --paired SRR492065/SRR492065_{1,2}.fastq.gz > SRR492065.kraken.tsv
+kraken-report --db "$KRAKEN_DB" SRR492065.kraken.tsv > SRR492065.kraken.rpt
+ktImportTaxonomy <( cut -f2,3 SRR492065.kraken.tsv ) -o SRR492065.krona.html
+firefox SRR492065.krona.html
+{% endhighlight %}
 
-	</details>
+To make an image open the html file, and click on the snapshot button. Then save the resulting image to `SRR492065.krona.svg`.
 
+![A Krona plot of the Kraken analysis of SRR492065.](Data_QC_Exercises_17-10-23/SRR492065.krona.svg)
+
+The Kraken analysis shows at least three organisms in the sample; Enterococcus, Staphylococcus, and Cutibacterium. Enterococcus also shows a higher abundance than both Staphylococcus and Cutibacterium, which are both in similar proportions.
+
+</details>
+
+### Task 15.
+
+Using the references, filter the reads that align uniquely to Staphylococcus and Cutibacterium.
+
+{% highlight bash %}
+{% endhighlight %}
+
+{% highlight bash %}
+# Load modules
+module load bioinfo-tools bwa/ samtools/1.9
+# Align to the references.
+PREFIX=$( basename "$REFERENCE" .fasta )    # Make a PREFIX from the reference name without .fasta on the end
+bwa mem -t "$CPUS" "$REFERENCE" "$READ1" "$READ2" | samtools sort -@ "$CPUS" -T "$SNIC_TMP/$PREFIX" -O BAM -o "${PREFIX}_bwa_alignment.bam" -
+samtools index "${PREFIX}_bwa_alignment.bam"
+samtools flagstat "${PREFIX}_bwa_alignment.bam" > "${PREFIX}_bwa_alignment.bam.stats"
+# Extract read names that align to reference
+samtools view -@ "$CPUS" -F 4 "${PREFIX}_bwa_alignment.bam" | cut -f1 | sort -u -o "${PREFIX}_aligned_reads.tsv"
+# Extract all read names
+samtools view -@ "$CPUS" "${PREFIX}_bwa_alignment.bam" | cut -f1 | sort -u -o "${PREFIX}_all_reads.tsv"
+# Extract read names unique to list1 between list1 (*.tsv) and list2 (*.tsv)
+sort --parallel="$CPUS" "${LIST_1_TSV}" "${LIST_2_TSV}" "${LIST_2_TSV}" | uniq -u > "${LIST_1_TSV}_only_reads.tsv"
+# Use the list to extract the reads unique to list1
+join -t ' ' <( zcat "$READ1" | paste - - - - | sort -k1,1 ) <( sed 's/^/@/' "${LIST_1_TSV}_only_reads.tsv" ) | tr '\t' '\n' | pigz -c > "${LIST_1_TSV}_only_R1.fastq.gz"
+join -t ' ' <( zcat "$READ2" | paste - - - - | sort -k1,1 ) <( sed 's/^/@/' "${LIST_1_TSV}_only_reads.tsv" ) | tr '\t' '\n' | pigz -c > "${LIST_1_TSV}_only_R2.fastq.gz"
+{% endhighlight %}
+
+<details>
+<summary> Solution - click to expand </summary>
+
+{% highlight bash %}
+CPUS=10
+READ1=Enterococcus_faecalis/SRR492065_1.fastq.gz
+READ2=Enterococcus_faecalis/SRR492065_2.fastq.gz
+# Reads aligned to Staphylococcus
+REFERENCE=
+PREFIX=$( basename "$REFERENCE" .fasta )
+bwa mem -t "$CPUS" "$REFERENCE" "$READ1" "$READ2" | samtools sort -@ "$CPUS" -T "$SNIC_TMP/$PREFIX" -O BAM -o "${PREFIX}_bwa_alignment.bam" -
+samtools index "${PREFIX}_bwa_alignment.bam"
+samtools flagstat "${PREFIX}_bwa_alignment.bam" > "${PREFIX}_bwa_alignment.bam.stats"
+# List of reads aligned to Staphylococcus
+samtools view -@ "$CPUS" -F 4 "${PREFIX}_bwa_alignment.bam" | cut -f1 | sort -u -o "${PREFIX}_aligned_reads.tsv"
+# List of all reads (not just aligned to Staphylococcus)
+samtools view -@ "$CPUS" "${PREFIX}_bwa_alignment.bam" | cut -f1 | sort -u -o "${PREFIX}_all_reads.tsv"
+# Reads aligned to Cutibacterium
+REFERENCE=
+PREFIX=$( basename "$REFERENCE" .fasta )
+bwa mem -t "$CPUS" "$REFERENCE" "$READ1" "$READ2" | samtools sort -@ "$CPUS" -T "$SNIC_TMP/$PREFIX" -O BAM -o "${PREFIX}_bwa_alignment.bam" -
+samtools index "${PREFIX}_bwa_alignment.bam"
+samtools flagstat "${PREFIX}_bwa_alignment.bam" > "${PREFIX}_bwa_alignment.bam.stats"
+# List of reads aligned to Cutibacterium
+samtools view -@ "$CPUS" -F 4 "${PREFIX}_bwa_alignment.bam" | cut -f1 | sort -u -o "${PREFIX}_aligned_reads.tsv"
+# List of read names not mapped to Staphylococcus
+LIST_1_TSV=
+LIST_2_TSV=
+sort --parallel="$CPUS" "${LIST_1_TSV}" "${LIST_2_TSV}" "${LIST_2_TSV}" | uniq -u > "${LIST_1_TSV}_only_reads.tsv"
+# List of read names not mapped to Cutibacterium
+LIST_1_TSV=
+LIST_2_TSV=
+sort --parallel="$CPUS" "${LIST_1_TSV}" "${LIST_2_TSV}" "${LIST_2_TSV}" | uniq -u > "${LIST_1_TSV}_only_reads.tsv"
+# Get filtered fastqs
+LIST_1_TSV=
+join -t ' ' <( zcat "$READ1" | paste - - - - | sort -k1,1 ) <( sed 's/^/@/' "${LIST_1_TSV}_only_reads.tsv" ) | tr '\t' '\n' | pigz -c > "${LIST_1_TSV}_only_R1.fastq.gz"
+join -t ' ' <( zcat "$READ2" | paste - - - - | sort -k1,1 ) <( sed 's/^/@/' "${LIST_1_TSV}_only_reads.tsv" ) | tr '\t' '\n' | pigz -c > "${LIST_1_TSV}_only_R2.fastq.gz"
+{% endhighlight %}
+
+</details>
