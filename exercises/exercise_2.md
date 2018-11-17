@@ -55,7 +55,6 @@ md5sum -c checksums.md5
 
 </details>
 
-
 Transfer the files again, this time making sure the files are complete.
 
 ### Task 3.

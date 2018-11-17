@@ -10,7 +10,28 @@ date: 22nd November 2018
 
 ### Task 1.
 
-Run FastQC on your data. Then open the results using `firefox` or `fastqc`.
+Run NanoPlot on your PacBio data. The results can be opened using `firefox`.
+What are the average and median length of the long reads.
+
+{% highlight bash %}
+PATH="$PATH:/proj/sllstore2017027/workshop-GA2018/tools/NanoPlot/bin"
+NanoPlot --help
+{% endhighlight %}
+
+<details>
+<summary> Solution - click to expand </summary>
+
+{% highlight bash %}
+NanoPlot --fastq Ecoli_pacbio.fastq.gz
+{% endhighlight %}
+
+The average read length of the PacBio data is 8.6kb, and the median read length is 6.7kb.
+
+</details>
+
+### Task 2.
+
+Run FastQC on your fastq data. Then open the results using `firefox` or `fastqc`.
 
 {% highlight bash %}
 module load bioinfo-tools FastQC/0.11.5
@@ -36,7 +57,7 @@ fastqc -t 6 */*.fastq.gz
 </div>
 </details>
 
-### Task 2.
+### Task 3.
 
 What is the average GC% in each data set?
 
@@ -53,7 +74,7 @@ What is the average GC% in each data set?
 </div>
 </details>
 
-### Task 3.
+### Task 4.
 
 Which quality score encoding is used?
 
@@ -64,7 +85,7 @@ Sanger / Illumina 1.9
 
 </details>
 
-### Task 4.
+### Task 5.
 
 What does a quality score of 20 (Q20) mean?
 
@@ -75,7 +96,7 @@ An expectation of 1 error in 100bp.
 
 </details>
 
-### Task 5.
+### Task 6.
 
 What does a quality score of 40 (Q40) mean?
 
@@ -86,7 +107,7 @@ An expectation of 1 error in 10000bp.
 
 </details>
 
-### Task 6.
+### Task 7.
 
 What distribution should the per base sequence plot follow?
 
@@ -97,7 +118,7 @@ A Uniform distribution.
 
 </details>
 
-### Task 7.
+### Task 8.
 
 What value should the per base GC distribution be centered on?
 
@@ -108,7 +129,7 @@ Average GC content.
 
 </details>
 
-### Task 8.
+### Task 9.
 
 How much duplication is present in each fastq file?
 
@@ -125,7 +146,7 @@ How much duplication is present in each fastq file?
 </div>
 </details>
 
-### Task 9.
+### Task 10.
 
 What is adapter read through?
 
@@ -136,7 +157,7 @@ When the sequence reads past the insert into the adapter sequence on the other e
 
 </details>
 
-### Task 10.
+### Task 11.
 
 Let's look at the adapter sequence in the **Enterococcus_faecalis/SRR492065_{1,2}.fastq.gz** fastq files. Illumina uses different adapters
 for different libraries. It is important to know which adapter sequence it is. Since this is public data, it is sometimes difficult to
@@ -166,7 +187,7 @@ AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT
 
 </details>
 
-### Task 11.
+### Task 12.
 
 Use the command below to view the reads that have matching adapter sequence in your files.
 
@@ -268,13 +289,16 @@ The Kraken analysis shows at least three organisms in the sample; Enterococcus, 
 Using the references, filter the reads that align uniquely to Staphylococcus and Cutibacterium.
 
 {% highlight bash %}
+/proj/sllstore2017027/workshop-GA2018/data/Illumina_SRR492065/Staphylococcus_aureus.fasta
+/proj/sllstore2017027/workshop-GA2018/data/Illumina_SRR492065/Cutibacterium_avidum.fasta
 {% endhighlight %}
 
 {% highlight bash %}
 # Load modules
-module load bioinfo-tools bwa/ samtools/1.9
+module load bioinfo-tools bwa/0.7.17 samtools/1.8
 # Align to the references.
 PREFIX=$( basename "$REFERENCE" .fasta )    # Make a PREFIX from the reference name without .fasta on the end
+bwa index "$REFERENCE"
 bwa mem -t "$CPUS" "$REFERENCE" "$READ1" "$READ2" | samtools sort -@ "$CPUS" -T "$SNIC_TMP/$PREFIX" -O BAM -o "${PREFIX}_bwa_alignment.bam" -
 samtools index "${PREFIX}_bwa_alignment.bam"
 samtools flagstat "${PREFIX}_bwa_alignment.bam" > "${PREFIX}_bwa_alignment.bam.stats"
@@ -283,22 +307,25 @@ samtools view -@ "$CPUS" -F 4 "${PREFIX}_bwa_alignment.bam" | cut -f1 | sort -u 
 # Extract all read names
 samtools view -@ "$CPUS" "${PREFIX}_bwa_alignment.bam" | cut -f1 | sort -u -o "${PREFIX}_all_reads.tsv"
 # Extract read names unique to list1 between list1 (*.tsv) and list2 (*.tsv)
-sort --parallel="$CPUS" "${LIST_1_TSV}" "${LIST_2_TSV}" "${LIST_2_TSV}" | uniq -u > "${LIST_1_TSV}_only_reads.tsv"
-# Use the list to extract the reads unique to list1
-join -t ' ' <( zcat "$READ1" | paste - - - - | sort -k1,1 ) <( sed 's/^/@/' "${LIST_1_TSV}_only_reads.tsv" ) | tr '\t' '\n' | pigz -c > "${LIST_1_TSV}_only_R1.fastq.gz"
-join -t ' ' <( zcat "$READ2" | paste - - - - | sort -k1,1 ) <( sed 's/^/@/' "${LIST_1_TSV}_only_reads.tsv" ) | tr '\t' '\n' | pigz -c > "${LIST_1_TSV}_only_R2.fastq.gz"
+sort --parallel="$CPUS" "${LIST_1_TSV}" "${LIST_2_TSV}" "${LIST_2_TSV}" | uniq -u > "${LIST_3_TSV}"
+# Use the list to extract the reads unique to list3
+join -t ' ' <( zcat "$READ1" | paste - - - - | sort -k1,1 ) <( sed 's/^/@/' "${LIST_3_TSV}" ) | tr '\t' '\n' | pigz -c > "${LIST_3_TSV%%_*}_cleaned_R1.fastq.gz"
+join -t ' ' <( zcat "$READ2" | paste - - - - | sort -k1,1 ) <( sed 's/^/@/' "${LIST_3_TSV}" ) | tr '\t' '\n' | pigz -c > "${LIST_3_TSV%%_*}_cleaned_R2.fastq.gz"
 {% endhighlight %}
 
 <details>
 <summary> Solution - click to expand </summary>
 
 {% highlight bash %}
+cp /proj/sllstore2017027/workshop-GA2018/data/Illumina_SRR492065/Staphylococcus_aureus.fasta .
+cp /proj/sllstore2017027/workshop-GA2018/data/Illumina_SRR492065/Cutibacterium_avidum.fasta .
 CPUS=10
 READ1=Enterococcus_faecalis/SRR492065_1.fastq.gz
 READ2=Enterococcus_faecalis/SRR492065_2.fastq.gz
 # Reads aligned to Staphylococcus
-REFERENCE=
+REFERENCE=Staphylococcus_aureus.fasta
 PREFIX=$( basename "$REFERENCE" .fasta )
+bwa index "$REFERENCE"
 bwa mem -t "$CPUS" "$REFERENCE" "$READ1" "$READ2" | samtools sort -@ "$CPUS" -T "$SNIC_TMP/$PREFIX" -O BAM -o "${PREFIX}_bwa_alignment.bam" -
 samtools index "${PREFIX}_bwa_alignment.bam"
 samtools flagstat "${PREFIX}_bwa_alignment.bam" > "${PREFIX}_bwa_alignment.bam.stats"
@@ -307,25 +334,26 @@ samtools view -@ "$CPUS" -F 4 "${PREFIX}_bwa_alignment.bam" | cut -f1 | sort -u 
 # List of all reads (not just aligned to Staphylococcus)
 samtools view -@ "$CPUS" "${PREFIX}_bwa_alignment.bam" | cut -f1 | sort -u -o "${PREFIX}_all_reads.tsv"
 # Reads aligned to Cutibacterium
-REFERENCE=
+REFERENCE=Cutibacterium_avidum.fasta
 PREFIX=$( basename "$REFERENCE" .fasta )
+bwa index "$REFERENCE"
 bwa mem -t "$CPUS" "$REFERENCE" "$READ1" "$READ2" | samtools sort -@ "$CPUS" -T "$SNIC_TMP/$PREFIX" -O BAM -o "${PREFIX}_bwa_alignment.bam" -
 samtools index "${PREFIX}_bwa_alignment.bam"
 samtools flagstat "${PREFIX}_bwa_alignment.bam" > "${PREFIX}_bwa_alignment.bam.stats"
 # List of reads aligned to Cutibacterium
 samtools view -@ "$CPUS" -F 4 "${PREFIX}_bwa_alignment.bam" | cut -f1 | sort -u -o "${PREFIX}_aligned_reads.tsv"
 # List of read names not mapped to Staphylococcus
-LIST_1_TSV=
-LIST_2_TSV=
-sort --parallel="$CPUS" "${LIST_1_TSV}" "${LIST_2_TSV}" "${LIST_2_TSV}" | uniq -u > "${LIST_1_TSV}_only_reads.tsv"
+LIST_1_TSV=Staphylococcus_aureus_all_reads.tsv
+LIST_2_TSV=Staphylococcus_aureus_aligned_reads.tsv
+sort --parallel="$CPUS" "${LIST_1_TSV}" "${LIST_2_TSV}" "${LIST_2_TSV}" | uniq -u > "Staphylococcus_aureus_removed_reads.tsv"
 # List of read names not mapped to Cutibacterium
-LIST_1_TSV=
-LIST_2_TSV=
-sort --parallel="$CPUS" "${LIST_1_TSV}" "${LIST_2_TSV}" "${LIST_2_TSV}" | uniq -u > "${LIST_1_TSV}_only_reads.tsv"
+LIST_1_TSV=Staphylococcus_aureus_removed_reads.tsv
+LIST_2_TSV=Cutibacterium_avidum_aligned_reads.tsv
+sort --parallel="$CPUS" "${LIST_1_TSV}" "${LIST_2_TSV}" "${LIST_2_TSV}" | uniq -u > "Enterococcus_only_reads.tsv"
 # Get filtered fastqs
-LIST_1_TSV=
-join -t ' ' <( zcat "$READ1" | paste - - - - | sort -k1,1 ) <( sed 's/^/@/' "${LIST_1_TSV}_only_reads.tsv" ) | tr '\t' '\n' | pigz -c > "${LIST_1_TSV}_only_R1.fastq.gz"
-join -t ' ' <( zcat "$READ2" | paste - - - - | sort -k1,1 ) <( sed 's/^/@/' "${LIST_1_TSV}_only_reads.tsv" ) | tr '\t' '\n' | pigz -c > "${LIST_1_TSV}_only_R2.fastq.gz"
+LIST_3_TSV=Enterococcus_only_reads.tsv
+join -t ' ' <( zcat "$READ1" | paste - - - - | sort -k1,1 ) <( sed 's/^/@/' "${LIST_3_TSV}" ) | tr '\t' '\n' | pigz -c > "${LIST_3_TSV%%_*}_cleaned_R1.fastq.gz"
+join -t ' ' <( zcat "$READ2" | paste - - - - | sort -k1,1 ) <( sed 's/^/@/' "${LIST_3_TSV}" ) | tr '\t' '\n' | pigz -c > "${LIST_3_TSV%%_*}_cleaned_R2.fastq.gz"
 {% endhighlight %}
 
 </details>

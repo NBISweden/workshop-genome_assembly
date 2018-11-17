@@ -56,6 +56,8 @@ Use `kat hist` to obtain a histogram of data **Enterococcus_faecalis/SRR492065_{
 What is the approximate k-mer coverage? Is anything wrong with this histogram?
 
 {% highlight bash %}
+# Load KAT
+module load bioinfo-tools KAT/
 # Make a named pipe and run in the background
 TMPFILE=$(mktemp -u --suffix ".fastq")
 mkfifo "$TMPFILE" && zcat "$READ1" "$READ2" > "$TMPFILE" &
@@ -93,7 +95,12 @@ Does this correspond to the estimated genome size of Enterococcus faecalis?
 <details>
 <summary> Solution - click to expand </summary>
 
-The peak of the histogram is at around 50x coverage.
+The peak of the histogram is at around 50x coverage, read length is 100, and the k-mer size is 27. This leads to
+a read depth of M * L / (L - K + 1) = 50 * 100 / (100 - 27 + 1) =~ 68x read depth of coverage.
+
+The total number of bases in the data set is 1070871200, and therefore the estimated genome size is
+G = T / N = 1070871200 / 68 = 15748106 =~ 15.75 Mb. From before we know the genome size is 3.22 Mb, so the
+estimated genome size also indicates something unusual about the data.
 
 </details>
 
