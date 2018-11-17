@@ -176,14 +176,12 @@ bbmerge.sh in=Enterococcus_faecalis/SRR492065_1.fastq.gz in2=Enterococcus_faecal
 more adapters.fa
 {% endhighlight %}
 
-
 {% highlight bash %}
 >Read1_adapter
 AGATCGGAAGAGCACACGTCTGAACTCCAGTCACCGATGTATNTCGTATGCCGTCTTNTGNTT
 >Read2_adapter
 AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT
 {% endhighlight %}
-
 
 </details>
 
@@ -255,14 +253,14 @@ Input Read Pairs: 5354356 Both Surviving: 5339516 (99.72%) Forward Only Survivin
 
 ### Task 14.
 
-Using the bacterial database, run Kraken on **Enterococcus_faecalis/SRR492065_{1,2}.fastq.gz**. What do you see?
+Using the bacterial database, run Kraken on **Enterococcus_faecalis/SRR492065_{1,2}.fastq.gz**.
+How many sequences are classified? What are they classified as?
 
 {% highlight bash %}
-module load bioinfo-tools Kraken2/2.0.7-beta-bc14b13
+module load bioinfo-tools Kraken2/2.0.7-beta-bc14b13 Krona/2.7
 KRAKEN2DB=$SNIC_TMP/kraken_bacterial_db
-rsync -av "/proj/sllstore2017027/workshop-GA2018/databases/kraken_bacterial_db" "$KRAKEN2DB"
-kraken2 --threads "$CPUS" --db "$KRAKEN2DB" --fastq-input --gzip-compressed --paired "$READ1" "$READ2" > "${PREFIX}_kraken.tsv"
-kraken-report --db "$KRAKEN2DB" "${PREFIX}_kraken.tsv" > "${PREFIX}_kraken.rpt"
+rsync -av "/proj/sllstore2017027/workshop-GA2018/databases/kraken_bacterial_db/" "$KRAKEN2DB"
+kraken2 --threads "$CPUS" --db "$KRAKEN2DB" --report "${PREFIX}_kraken.rpt" --gzip-compressed --paired "$READ1" "$READ2" > "${PREFIX}_kraken.tsv"
 ktImportTaxonomy <( cut -f2,3 "${PREFIX}_kraken.tsv" ) -o "${PREFIX}_kraken_krona.html"
 {% endhighlight %}
 
@@ -274,7 +272,7 @@ TMPDB=$(mktemp -u)
 kraken2-build --download-taxonomy --db "$SNIC_TMP/$TMPDB"
 kraken2-build --download-library bacteria --db "$SNIC_TMP/$TMPDB"
 kraken2-build --build --threads "$CPUS" --db "$SNIC_TMP/$TMPDB"
-rsync -av "$SNIC_TMP/$TMPDB" kraken_bacterial_db
+rsync -av "$SNIC_TMP/$TMPDB/" kraken_bacterial_db
 {% endhighlight %}
 
 <details>
@@ -286,15 +284,20 @@ READ1=Enterococcus_faecalis/SRR492065_1.fastq.gz
 READ2=Enterococcus_faecalis/SRR492065_2.fastq.gz
 PREFIX=$(basename "$READ1" _1.fastq.gz )
 KRAKEN2DB=$SNIC_TMP/kraken_bacterial_db
-rsync -av "/proj/sllstore2017027/workshop-GA2018/databases/kraken_bacterial_db" "$KRAKEN2DB"
-kraken2 --threads "$CPUS" --db "$KRAKEN2DB" --fastq-input --gzip-compressed --paired "$READ1" "$READ2" > "${PREFIX}_kraken.tsv"
-kraken-report --db "$KRAKEN2DB" "${PREFIX}_kraken.tsv" > "${PREFIX}_kraken.rpt"
+rsync -av "/proj/sllstore2017027/workshop-GA2018/databases/kraken_bacterial_db/" "$KRAKEN2DB"
+kraken2 --threads "$CPUS" --db "$KRAKEN2DB" --report "${PREFIX}_kraken.rpt" --gzip-compressed --paired "$READ1" "$READ2" > "${PREFIX}_kraken.tsv"
 ktImportTaxonomy <( cut -f2,3 "${PREFIX}_kraken.tsv" ) -o "${PREFIX}_kraken_krona.html"
 {% endhighlight %}
 
-To make an image open the html file, and click on the snapshot button. Then save the resulting image to `SRR492065_kraken_krona.svg`.
+{% highlight bash %}
+5354356 sequences (1070.87 Mbp) processed in 42.233s (7606.9 Kseq/m, 1521.39 Mbp/m).
+  4466191 sequences classified (83.41%)
+  888165 sequences unclassified (16.59%)
+{% endhighlight %}
 
-![A Krona plot of the Kraken analysis of SRR492065.](SRR492065.krona.svg)
+To make an image, open the html file and click on the snapshot button. Then save the resulting image to `SRR492065_kraken_krona.svg`.
+
+![A Krona plot of the Kraken analysis of SRR492065.](SRR492065_kraken_krona.svg)
 
 The Kraken analysis shows at least three organisms in the sample; Enterococcus, Staphylococcus, and Cutibacterium. Enterococcus also shows a higher abundance than both Staphylococcus and Cutibacterium, which are both in similar proportions.
 

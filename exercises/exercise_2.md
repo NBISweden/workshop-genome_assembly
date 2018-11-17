@@ -10,14 +10,14 @@ date: 22nd November 2018
 
 ### Task 1.
 
-Change directory to the exercise data folder (`/proj/sllstore2017027/workshop-GA2018/data/QC_files`). Use `md5sum` to calculate the checksum of all the data files in the exercise folder. Redirect the checksum values to a file called **checksums.md5** in your working directory. Change directory to your working directory.
+Change directory to the exercise data folder (`/proj/sllstore2017027/workshop-GA2018/data/QC_files`). Use `md5sum` to calculate the checksum of all the data files in the exercise data folder. Redirect the checksum values to a file called **checksums.md5** in your working directory. Then change directory to your working directory. Your working directory is the directory where you will conduct your analyses.
 
 <details>
 <summary> Solution - click to expand </summary>
 Simple solution:
 
 {% highlight bash %}
-# Change to working directory
+# Change to exercise data directory
 cd /proj/sllstore2017027/workshop-GA2018/data/QC_files
 # Check contents of folder
 ls -R
@@ -40,8 +40,8 @@ find -type "f" -exec md5sum {} \; | tee $WORKDIR/checksums.md5 # redirected outp
 Copy the exercise files to your working directory, but interrupt transfer with `ctrl + c`.
 
 {% highlight bash %}
-cd $WORKDIR # Change directory to my exercise directory
-cp -vlr /proj/sllstore2017027/workshop-GA2018/data/QC_files/* . # Copy all the files to my exercise directory
+cd $WORKDIR # Change directory to my working directory
+cp -vlr /proj/sllstore2017027/workshop-GA2018/data/QC_files/* . # Copy all the files to my working directory
 {% endhighlight %}
 
 Use the `-c` option of `md5sum` to check the files are complete.
@@ -60,7 +60,7 @@ Transfer the files again, this time making sure the files are complete.
 ### Task 3.
 
 The PacBio data has been converted from RSII platforms' hd5 files to the Sequel platforms' unaligned BAM format using
-the `bax2bam` tool in SMRT command line package. Use SMRT tools to extract the fastq from the BAM file.
+the `bax2bam` tool in the SMRT tools package. Use SMRT tools to extract the fastq from the BAM file.
 
 {% highlight bash %}
 module load bioinfo-tools SMRT/5.0.1
@@ -259,7 +259,7 @@ bbnorm.sh --help
 <details>
 <summary> Solution - click to expand </summary>
 
-Since we want approximately 10% of the reads, we use a value of 0.1 as the fraction of reads to sample.
+As coverage is relatively high, we aim for a target coverage of 100x.
 
 {% highlight bash %}
 bbnorm.sh in=Enterococcus_faecalis/SRR492065_1.fastq.gz in2=Enterococcus_faecalis/SRR492065_2.fastq.gz \

@@ -98,7 +98,7 @@ rm "$TMPFILE"
 
 ![A k-mer histogram of the SRR492065 data.]()
 
-The homozygous peak in the histogram appears to be at 50x k-mer coverage.
+The homozygous peak in the histogram is at 49x k-mer coverage.
 
 The histogram is unusual because there is a higher than expected frequency of low frequency k-mers.
 

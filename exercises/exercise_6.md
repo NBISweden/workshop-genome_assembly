@@ -36,7 +36,27 @@ run_many_commands File1.ext File2.ext File3.ext
 
 ## Exercises
 
-### Task 1. QUAST
+Some assemblies have been provided for you to assess. They can be found here:
+
+{% highlight bash %}
+{% endhighlight %}
+
+This is how the assemblies were made:
+
+Assembly | Description
+:--- | :---
+spades_k21-55_full.fasta | spades using k=21,33,55 and SRR492065_{1,2}.fastq.gz
+spades_k21-127_full.fasta | spades using k=21,33,55,77,99,127 and SRR492065_{1,2}.fastq.gz
+spades_k21-55_normalized.fasta | spades using k=21,33,55 and SRR492065_normalized_{1,2}.fastq.gz
+spades_k21-127_normalized.fasta | spades using k=21,33,55,77,99,127 and SRR492065_normalized_{1,2}.fastq.gz
+spades_k21-55_cleaned.fasta | spades using k=21,33,55 and SRR492065_cleaned_{1,2}.fastq.gz
+spades_k21-127_cleaned.fasta | spades using k=21,33,55,77,99,127 and SRR492065_cleaned_{1,2}.fastq.gz
+shovill_full_spades.fasta | shovill using assembler=spades and SRR492065_{1,2}.fastq.gz
+shovill_full_megahit.fasta | shovill using assembler=megahit and SRR492065_{1,2}.fastq.gz
+masurca_cleaned.fasta | masurca using SRR492065_cleaned_{1,2}.fastq.gz
+abyss_k35_cleaned.fasta | abyss using k=35 and SRR492065_cleaned_{1,2}.fastq.gz
+
+### Task 1.
 
 QUAST is a good starting point to help evaluate the quality of assemblies. It provides many helpful contiguity statistics.
 
@@ -55,7 +75,7 @@ Which assembly looks the best?
 First run Quast on all the assemblies.
 
 {% highlight bash %}
-quast.py -t "$CPUS" --est-ref-size 3200000 *.fasta
+quast.py -t "${CPUS:-10}" --est-ref-size 3200000 *.fasta
 {% endhighlight %}
 
 ![Quast Cumulative Length Plot](images/quast/cumulative_plot.png)
@@ -66,7 +86,7 @@ quast.py -t "$CPUS" --est-ref-size 3200000 *.fasta
 
 </details>
 
-### Task2. Read alignment statistics
+### Task 2.
 
 Read congruency is an important measure in determining assembly accuracy. Clusters of read pairs that align incorrectly are
 strong indicators of mis-assembly.
@@ -119,7 +139,7 @@ done
 
 </details>
 
-### Task 3.  FRCBAM
+### Task 3.
 
 Use the alignments to search for signals of misassembly.
 
@@ -176,3 +196,44 @@ EOF
 ![An FRC curve comparison of the assemblies](images/frc/FRC_Curve_all_assemblies.png)
 
 </details>
+
+### Task 4.
+
+Use IGV to load an assembly, BAM file, and the corresponding FRC bed file.
+
+Note that running a graphical application over the network is a very slow process. If you have
+IGV installed on your computer, please download the files locally and view them there. Otherwise
+IGV can be started on your node using:
+
+{% highlight bash %}
+module load bioinfo-tools IGV/2.4.2
+igv.sh
+{% endhighlight %}
+
+### Task 5.
+
+KAT is useful tool for high accuracy sequence data. The spectra-cn (copy number spectra) graph shows a
+decomposition of k-mers in the assembly vs k-mers in the reads.
+The black portion are k-mers not present in the assembly, the red portion is found once in the assembly, and so on.
+This shows the completeness of an assembly, i.e. are all the reads assembled into contigs representative of the sequence data.
+
+Use KAT to compare the assembly against the reads.
+
+{% highlight bash %}
+source /proj/sllstore2017027/workshop-GA2018/tools/anaconda/miniconda2/etc/profile.d/conda.sh
+conda activate GA2018
+
+apply_katcomp () {
+	ASSEMBLY="$1"		# The assembly is the first parameter to this function. It must end in .fasta
+	READ1="$2" 			# The first read pair is the second parameter to this function
+	READ2="$3" 			# The second read pair is the third parameter to this function
+	PREFIX=$( basename "${ASSEMBLY}" .fasta)
+	TMP_FASTQ=$(mktemp -u --suffix ".fastq")
+	mkfifo "${TMP_FASTQ}" && zcat "$READ1" "$READ2" > "${TMP_FASTQ}" &		# Make a named pipe and combine reads
+	sleep 5																	# Give a little time for the pipe to be made
+	kat comp -H 800000000 -t "${CPUS:-10}" -o "${PREFIX}_vs_reads.cmp" "${TMP_FASTQ}" "$ASSEMBLY" 	# Compare Reads to Assembly
+	rm "${TMP_FASTQ}"
+}
+{% endhighlight %}
+
+### Task 6.
