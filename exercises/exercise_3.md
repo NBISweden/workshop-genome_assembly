@@ -255,30 +255,46 @@ Input Read Pairs: 5354356 Both Surviving: 5339516 (99.72%) Forward Only Survivin
 
 ### Task 14.
 
-Run Kraken on **Enterococcus_faecalis/SRR492065_{1,2}.fastq.gz**. What do you see?
+Using the bacterial database, run Kraken on **Enterococcus_faecalis/SRR492065_{1,2}.fastq.gz**. What do you see?
 
 {% highlight bash %}
 module load bioinfo-tools Kraken2/2.0.7-beta-bc14b13
-KRAKEN_DB=/home/data/byod/minikraken_20141208
-kraken --threads 4 --db "$KRAKEN_DB" --fastq-input --gzip-compressed --paired <read_{1,2}.fastq.gz> > <kraken.tsv>
-kraken-report --db "$KRAKEN_DB" <kraken.tsv> > <kraken.rpt>
-ktImportTaxonomy <( cut -f2,3 <kraken.tsv> ) -o <krona.html>
+KRAKEN2DB=$SNIC_TMP/kraken_bacterial_db
+rsync -av "/proj/sllstore2017027/workshop-GA2018/databases/kraken_bacterial_db" "$KRAKEN2DB"
+kraken2 --threads "$CPUS" --db "$KRAKEN2DB" --fastq-input --gzip-compressed --paired "$READ1" "$READ2" > "${PREFIX}_kraken.tsv"
+kraken-report --db "$KRAKEN2DB" "${PREFIX}_kraken.tsv" > "${PREFIX}_kraken.rpt"
+ktImportTaxonomy <( cut -f2,3 "${PREFIX}_kraken.tsv" ) -o "${PREFIX}_kraken_krona.html"
+{% endhighlight %}
+
+The database was built using the following commands. See the Kraken2 homepage for how to build more comprehensive databases.
+
+{% highlight bash %}
+CPUS=${SLURM_NPROCS:-10}
+TMPDB=$(mktemp -u)
+kraken2-build --download-taxonomy --db "$SNIC_TMP/$TMPDB"
+kraken2-build --download-library bacteria --db "$SNIC_TMP/$TMPDB"
+kraken2-build --build --threads "$CPUS" --db "$SNIC_TMP/$TMPDB"
+rsync -av "$SNIC_TMP/$TMPDB" kraken_bacterial_db
 {% endhighlight %}
 
 <details>
 <summary> Solution - click to expand </summary>
 
 {% highlight bash %}
-KRAKEN_DB=/home/data/byod/minikraken_20141208
-kraken --threads 4 --db "$KRAKEN_DB" --fastq-input --gzip-compressed --paired SRR492065/SRR492065_{1,2}.fastq.gz > SRR492065.kraken.tsv
-kraken-report --db "$KRAKEN_DB" SRR492065.kraken.tsv > SRR492065.kraken.rpt
-ktImportTaxonomy <( cut -f2,3 SRR492065.kraken.tsv ) -o SRR492065.krona.html
-firefox SRR492065.krona.html
+CPUS=${SLURM_NPROCS:-10}
+READ1=Enterococcus_faecalis/SRR492065_1.fastq.gz
+READ2=Enterococcus_faecalis/SRR492065_2.fastq.gz
+PREFIX=$(basename "$READ1" _1.fastq.gz )
+KRAKEN2DB=$SNIC_TMP/kraken_bacterial_db
+rsync -av "/proj/sllstore2017027/workshop-GA2018/databases/kraken_bacterial_db" "$KRAKEN2DB"
+kraken2 --threads "$CPUS" --db "$KRAKEN2DB" --fastq-input --gzip-compressed --paired "$READ1" "$READ2" > "${PREFIX}_kraken.tsv"
+kraken-report --db "$KRAKEN2DB" "${PREFIX}_kraken.tsv" > "${PREFIX}_kraken.rpt"
+ktImportTaxonomy <( cut -f2,3 "${PREFIX}_kraken.tsv" ) -o "${PREFIX}_kraken_krona.html"
 {% endhighlight %}
 
-To make an image open the html file, and click on the snapshot button. Then save the resulting image to `SRR492065.krona.svg`.
+To make an image open the html file, and click on the snapshot button. Then save the resulting image to `SRR492065_kraken_krona.svg`.
 
-![A Krona plot of the Kraken analysis of SRR492065.](Data_QC_Exercises_17-10-23/SRR492065.krona.svg)
+![A Krona plot of the Kraken analysis of SRR492065.](SRR492065.krona.svg)
 
 The Kraken analysis shows at least three organisms in the sample; Enterococcus, Staphylococcus, and Cutibacterium. Enterococcus also shows a higher abundance than both Staphylococcus and Cutibacterium, which are both in similar proportions.
 
@@ -286,7 +302,7 @@ The Kraken analysis shows at least three organisms in the sample; Enterococcus, 
 
 ### Task 15.
 
-Using the references, filter the reads that align uniquely to Staphylococcus and Cutibacterium.
+Using the references, filter the reads that align to Staphylococcus and Cutibacterium.
 
 {% highlight bash %}
 /proj/sllstore2017027/workshop-GA2018/data/Illumina_SRR492065/Staphylococcus_aureus.fasta
@@ -319,7 +335,7 @@ join -t ' ' <( zcat "$READ2" | paste - - - - | sort -k1,1 ) <( sed 's/^/@/' "${L
 {% highlight bash %}
 cp /proj/sllstore2017027/workshop-GA2018/data/Illumina_SRR492065/Staphylococcus_aureus.fasta .
 cp /proj/sllstore2017027/workshop-GA2018/data/Illumina_SRR492065/Cutibacterium_avidum.fasta .
-CPUS=10
+CPUS=${SLURM_NPROCS:-10}
 READ1=Enterococcus_faecalis/SRR492065_1.fastq.gz
 READ2=Enterococcus_faecalis/SRR492065_2.fastq.gz
 # Reads aligned to Staphylococcus

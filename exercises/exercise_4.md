@@ -6,6 +6,24 @@ date: 22nd November 2018
 
 # Data Quality Assessment
 
+## Introduction
+
+In order to make KAT available to you, a special environment has been built.
+
+Use the following command to activate the environment:
+
+{% highlight bash %}
+source /proj/sllstore2017027/workshop-GA2018/tools/anaconda/miniconda2/etc/profile.d/conda.sh
+conda activate GA2018
+kat --help
+{% endhighlight %}
+
+To deactivate the environment use:
+
+{% highlight bash %}
+conda deactivate
+{% endhighlight %}
+
 ## Exercises
 
 ### Task 1.
@@ -56,8 +74,6 @@ Use `kat hist` to obtain a histogram of data **Enterococcus_faecalis/SRR492065_{
 What is the approximate k-mer coverage? Is anything wrong with this histogram?
 
 {% highlight bash %}
-# Load KAT
-module load bioinfo-tools KAT/
 # Make a named pipe and run in the background
 TMPFILE=$(mktemp -u --suffix ".fastq")
 mkfifo "$TMPFILE" && zcat "$READ1" "$READ2" > "$TMPFILE" &
@@ -70,6 +86,7 @@ rm "$TMPFILE"
 <summary> Solution - click to expand </summary>
 
 {% highlight bash %}
+CPUS=${SLURM_NPROCS:-10}
 READ1=Enterococcus_faecalis/SRR492065_1.fastq.gz
 READ2=Enterococcus_faecalis/SRR492065_2.fastq.gz
 PREFIX=$(basename ${READ1%_1.*} )
@@ -148,7 +165,7 @@ TMPFILE2=$(mktemp -u --suffix ".fastq")
 mkfifo "$TMPFILE1" && zcat "$READ1" > "$TMPFILE1" &
 mkfifo "$TMPFILE2" && zcat "$READ2" > "$TMPFILE2" &
 kat comp -t "$CPUS" -o "${PREFIX}_r1vr2.cmp" --density_plot "$TMPFILE1" "$TMPFILE2"
-kat plot spectra-mx -x 50 -y 500000 -n -o "${PREFIX}_r1vr2.cmp-main.mx.spectra-mx.png" "${PREFIX}_r1vr2.cmp-main.mx"
+kat plot spectra-mx -x 50 -y 500000 --intersection -o "${PREFIX}_r1vr2.cmp-main.mx.spectra-mx.png" "${PREFIX}_r1vr2.cmp-main.mx"
 rm "$TMPFILE1" "$TMPFILE2"
 {% endhighlight %}
 
@@ -166,7 +183,7 @@ TMPFILE2=$(mktemp -u --suffix ".fastq")
 mkfifo "$TMPFILE1" && zcat "$READ1" > "$TMPFILE1" &
 mkfifo "$TMPFILE2" && zcat "$READ2" > "$TMPFILE2" &
 kat comp -t "$CPUS" -o "${PREFIX}_r1vr2.cmp" --density_plot "$TMPFILE1" "$TMPFILE2"
-kat plot spectra-mx -x 50 -y 500000 -n -o "${PREFIX}_r1vr2.cmp-main.mx.spectra-mx.png" "${PREFIX}_r1vr2.cmp-main.mx"
+kat plot spectra-mx -x 50 -y 500000 --intersection -o "${PREFIX}_r1vr2.cmp-main.mx.spectra-mx.png" "${PREFIX}_r1vr2.cmp-main.mx"
 rm "$TMPFILE1" "$TMPFILE2"
 {% endhighlight %}
 
