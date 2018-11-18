@@ -29,7 +29,15 @@ apply_kraken () {
 
 ### Task 2.
 
-Now classify the sequences using Blast.
+One could also classify the sequences using Blast, however this is a time consuming process.
+Running a single assembly on the resources allocated to you can take up to an hour.
+
+Copy the results we have already provided and inspect them.
+
+{% highlight bash %}
+{% endhighlight %}
+
+The results were generated in the following way:
 
 {% highlight bash %}
 module load bioinfo-tools blast/2.7.1+ Krona/2.7
@@ -50,8 +58,6 @@ apply_Blast () {
 	ktImportTaxonomy <( cat <( cut -f1,2 "${PREFIX}_blast_alignment.tsv" | sort -u ) <( set_difference <( grep ">" "$ASSEMBLY" | cut -c2- ) <(cut -f1 "${PREFIX}_blast_alignment.tsv" ) )) -o "${PREFIX}_blast_krona.html"
 
 }
-# Run blast for each assembly. Each blast takes approximately 5 minutes (Use the time to solve another exercise).
-
 {% endhighlight %}
 
 ### Task 3.  
