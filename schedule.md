@@ -36,7 +36,7 @@ Day 1                 |
 16.00 - 17.00         | Session 4 [Exercises](exercises/exercise_4)
 Day 2                 |
 09.00 - 09.30         | Discussion of previous days exercises
-09.30 - 10.00         | **Session 5**: [Overview of de novo assembler principles](slides/session_5)
+09.30 - 10.00         | **Session 5**: [Overview of de novo assembler principles](slides/De_novo_assembler_principles.pptx)
 10.00 - 10.15         | *Coffee break / fika*
 10.15 - 10.45         | **Session 6**: [Assembly Validation - Assembly Statistics, and misassembly detection](slides/Assembly_Validation_1.pptx)
 10.45 - 12.00         | Session 6 [Exercises](exercises/exercise_6)
