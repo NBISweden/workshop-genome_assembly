@@ -59,16 +59,16 @@ What are the frequencies of the 4-mers in the sequence above.
 <details>
 <summary> Solution - click to expand </summary>
 
-```
+{% highlight bash %}
 ACGT 1	CGTT 1	GTTT 1	TTTA 1	TTAT 1
 TATC 1	ATCC 1	TCCT 1	CCTA 1	CTAT 1
 TATA 1	ATAC 2	TACG 1	ACGG 1	CGGT 1
 GGTA 1	GTAA 1	TAAT 1	AATA 1
-```
+{% endhighlight %}
 
 </details>
 
-### Task 4.
+### Task 4.
 
 Use `kat hist` to obtain a histogram of data **Enterococcus_faecalis/SRR492065_{1,2}.fastq.gz**.
 What is the approximate k-mer coverage? Is anything wrong with this histogram?

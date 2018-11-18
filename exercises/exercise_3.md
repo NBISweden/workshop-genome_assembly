@@ -185,7 +185,7 @@ AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT
 
 </details>
 
-### Task 12.
+### Task 12.
 
 Use the command below to view the reads that have matching adapter sequence in your files.
 
@@ -264,7 +264,7 @@ kraken2 --threads "$CPUS" --db "$KRAKEN2DB" --report "${PREFIX}_kraken.rpt" --gz
 ktImportTaxonomy <( cut -f2,3 "${PREFIX}_kraken.tsv" ) -o "${PREFIX}_kraken_krona.html"
 {% endhighlight %}
 
-The database was built using the following commands. See the Kraken2 homepage for how to build more comprehensive databases.
+It takes a very long time to build the database, so we have provided a build for you above. The database was built using the following commands. See the Kraken2 homepage for how to build more comprehensive databases.
 
 {% highlight bash %}
 CPUS=${SLURM_NPROCS:-10}

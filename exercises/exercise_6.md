@@ -5,7 +5,7 @@ date: 23rd November 2018
 ---
 # Assembly Validation Exercises.
 
-## Introduction
+## Introduction
 
 The following exercises are intended to introduce you to the tools involved in assembly validation.
 
