@@ -39,6 +39,7 @@ run_many_commands File1.ext File2.ext File3.ext
 Some assemblies have been provided for you to assess. They can be found here:
 
 {% highlight bash %}
+/proj/sllstore2017027/workshop-GA2018/data/SRR492065_assemblies
 {% endhighlight %}
 
 This is how the assemblies were made:
@@ -88,6 +89,8 @@ quast.py -t "${CPUS:-10}" --est-ref-size 3200000 *.fasta
 
 ### Task 2.
 
+Select three assemblies of your choice for the remaining tasks.
+
 Read congruency is an important measure in determining assembly accuracy. Clusters of read pairs that align incorrectly are
 strong indicators of mis-assembly.
 
@@ -96,6 +99,7 @@ How well do the reads align back to the draft assemblies? Use `bwa` and `samtool
 Make a folder for your results.
 
 {% highlight bash %}
+module load bioinfo-tools bwa/0.7.17 samtools/1.8
 mkdir BWA
 cd BWA
 ln -s ../*.fasta . # link the fasta files in this directory
@@ -112,6 +116,7 @@ align_reads () {
 	bwa index "$ASSEMBLY" # Index the assembly prior to alignment
 	bwa mem -t "${CPUS:-10}" "$ASSEMBLY" "$READ1" "$READ2" | samtools sort -@ "${CPUS:-10}" -T "${PREFIX}" -O BAM -o "${PREFIX}_bwa_alignment.bam" -
 	samtools index "${PREFIX}_bwa_alignment.bam"
+	samtools flagstat "${PREFIX}_bwa_alignment.bam" > "${PREFIX}_bwa_alignment.flagstats"
 }
 {% endhighlight %}
 
@@ -128,13 +133,49 @@ order and with the correct parameters.
 <summary> Solution - click to expand </summary>
 
 {% highlight bash %}
-for FASTA in *.fasta; do
-	align_reads "$FASTA" ../bacteria_R1.fastq.gz ../bacteria_R2.fastq.gz
-done
+align_reads abyss_k35_cleaned.fasta ../SRR492065_cleaned_R1.fastq.gz ../SRR492065_cleaned_R2.fastq.gz
+align_reads masurca_cleaned.fasta ../SRR492065_cleaned_R1.fastq.gz ../SRR492065_cleaned_R2.fastq.gz
+align_reads shovill_full_megahit.fasta ../SRR492065_1.fastq.gz ../SRR492065_2.fastq.gz
+align_reads shovill_full_spades.fasta ../SRR492065_1.fastq.gz ../SRR492065_2.fastq.gz
+align_reads spades_k21-127_cleaned.fasta ../SRR492065_cleaned_R1.fastq.gz ../SRR492065_cleaned_R2.fastq.gz
+align_reads spades_k21-127_full.fasta ../SRR492065_1.fastq.gz ../SRR492065_2.fastq.gz
+align_reads spades_k21-127_normalized.fasta ../SRR492065_normalized_1.fastq.gz ../SRR492065_normalized_2.fastq.gz
+align_reads spades_k21-55_cleaned.fasta ../SRR492065_cleaned_R1.fastq.gz ../SRR492065_cleaned_R2.fastq.gz
+align_reads spades_k21-55_full.fasta ../SRR492065_1.fastq.gz ../SRR492065_2.fastq.gz
+align_reads spades_k21-55_normalized.fasta ../SRR492065_normalized_1.fastq.gz ../SRR492065_normalized_2.fastq.gz
 {% endhighlight %}
 
 {% highlight bash %}
-
+# abyss_k35_cleaned_bwa_alignment.flagstats
+8173153 + 0 mapped (95.66% : N/A)
+7791892 + 0 properly paired (91.28% : N/A)
+# masurca_cleaned_bwa_alignment.flagstats
+7445760 + 0 mapped (87.19% : N/A)
+6245750 + 0 properly paired (73.17% : N/A)
+# shovill_full_megahit_bwa_alignment.flagstats
+10405980 + 0 mapped (97.08% : N/A)
+7204140 + 0 properly paired (67.27% : N/A)
+# shovill_full_spades_bwa_alignment.flagstats
+10407264 + 0 mapped (97.14% : N/A)
+9776868 + 0 properly paired (91.30% : N/A)
+# spades_k21-127_cleaned_bwa_alignment.flagstats
+8365652 + 0 mapped (97.96% : N/A)
+8040432 + 0 properly paired (94.19% : N/A)
+# spades_k21-127_full_bwa_alignment.flagstats
+10426814 + 0 mapped (97.32% : N/A)
+9895100 + 0 properly paired (92.40% : N/A)
+# spades_k21-127_normalized_bwa_alignment.flagstats
+8711547 + 0 mapped (98.67% : N/A)
+8335810 + 0 properly paired (94.44% : N/A)
+# spades_k21-55_cleaned_bwa_alignment.flagstats
+8385452 + 0 mapped (98.19% : N/A)
+8061476 + 0 properly paired (94.44% : N/A)
+# spades_k21-55_full_bwa_alignment.flagstats
+10444190 + 0 mapped (97.48% : N/A)
+9882702 + 0 properly paired (92.29% : N/A)
+# spades_k21-55_normalized_bwa_alignment.flagstats
+8722078 + 0 mapped (98.79% : N/A)
+8328482 + 0 properly paired (94.35% : N/A)
 {% endhighlight %}
 
 </details>
@@ -144,6 +185,8 @@ done
 Use the alignments to search for signals of misassembly.
 
 {% highlight bash %}
+source /proj/sllstore2017027/workshop-GA2018/tools/anaconda/miniconda2/etc/profile.d/conda.sh
+conda activate GA2018_frc
 mkdir FRC
 cd FRC
 ln -s ../BWA/*.bam .
@@ -178,7 +221,7 @@ How do these results compare to the Quast results?
 
 {% highlight bash %}
 for BAM in *.bam; do
-	apply_FRC "$BAM" 5000000
+	apply_FRC "$BAM" 3200000
 done
 gnuplot << EOF
 set terminal png size 800,600
@@ -199,7 +242,7 @@ EOF
 
 ### Task 4.
 
-Use IGV to load an assembly, BAM file, and the corresponding FRC bed file.
+Use IGV to load an assembly, BAM file, and the corresponding FRC GFF file.
 
 Note that running a graphical application over the network is a very slow process. If you have
 IGV installed on your computer, please download the files locally and view them there. Otherwise
@@ -222,18 +265,40 @@ Use KAT to compare the assembly against the reads.
 {% highlight bash %}
 source /proj/sllstore2017027/workshop-GA2018/tools/anaconda/miniconda2/etc/profile.d/conda.sh
 conda activate GA2018
+mkdir KAT
+cd KAT
+ln -s ../*.fasta .
 
 apply_katcomp () {
-	ASSEMBLY="$1"		# The assembly is the first parameter to this function. It must end in .fasta
-	READ1="$2" 			# The first read pair is the second parameter to this function
-	READ2="$3" 			# The second read pair is the third parameter to this function
+	ASSEMBLY="$1"     # The assembly is the first parameter to this function. It must end in .fasta
+	READ1="$2"        # The first read pair is the second parameter to this function
+	READ2="$3"        # The second read pair is the third parameter to this function
 	PREFIX=$( basename "${ASSEMBLY}" .fasta)
 	TMP_FASTQ=$(mktemp -u --suffix ".fastq")
-	mkfifo "${TMP_FASTQ}" && zcat "$READ1" "$READ2" > "${TMP_FASTQ}" &		# Make a named pipe and combine reads
-	sleep 5																	# Give a little time for the pipe to be made
-	kat comp -H 800000000 -t "${CPUS:-10}" -o "${PREFIX}_vs_reads.cmp" "${TMP_FASTQ}" "$ASSEMBLY" 	# Compare Reads to Assembly
+	mkfifo "${TMP_FASTQ}" && zcat "$READ1" "$READ2" > "${TMP_FASTQ}" &                              # Make a named pipe and combine reads
+	sleep 5                                                                                         # Give a little time for the pipe to be made
+	kat comp -H 800000000 -t "${CPUS:-10}" -o "${PREFIX}_vs_reads.cmp" "${TMP_FASTQ}" "$ASSEMBLY"   # Compare Reads to Assembly
 	rm "${TMP_FASTQ}"
 }
 {% endhighlight %}
+
+<details>
+<summary> Solution - click to expand </summary>
+
+{% highlight bash %}
+apply_katcomp abyss_k35_cleaned.fasta ../SRR492065_cleaned_R1.fastq.gz ../SRR492065_cleaned_R2.fastq.gz
+apply_katcomp masurca_cleaned.fasta ../SRR492065_cleaned_R1.fastq.gz ../SRR492065_cleaned_R2.fastq.gz
+apply_katcomp shovill_full_megahit.fasta ../SRR492065_1.fastq.gz ../SRR492065_2.fastq.gz
+apply_katcomp shovill_full_spades.fasta ../SRR492065_1.fastq.gz ../SRR492065_2.fastq.gz
+apply_katcomp spades_k21-127_cleaned.fasta ../SRR492065_cleaned_R1.fastq.gz ../SRR492065_cleaned_R2.fastq.gz
+apply_katcomp spades_k21-127_full.fasta ../SRR492065_1.fastq.gz ../SRR492065_2.fastq.gz
+apply_katcomp spades_k21-127_normalized.fasta ../SRR492065_normalized_1.fastq.gz ../SRR492065_normalized_2.fastq.gz
+apply_katcomp spades_k21-55_cleaned.fasta ../SRR492065_cleaned_R1.fastq.gz ../SRR492065_cleaned_R2.fastq.gz
+apply_katcomp spades_k21-55_full.fasta ../SRR492065_1.fastq.gz ../SRR492065_2.fastq.gz
+apply_katcomp spades_k21-55_normalized.fasta ../SRR492065_normalized_1.fastq.gz ../SRR492065_normalized_2.fastq.gz
+{% endhighlight %}
+
+</details>
+
 
 ### Task 6.

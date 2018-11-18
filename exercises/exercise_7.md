@@ -80,6 +80,7 @@ apply_blobtools () {
 Bandage is a great tool to visualise assembly graphs. The assembly graphs for some of the assemblies can be found here.
 
 {% highlight bash %}
+/proj/sllstore2017027/workshop-GA2018/data/SRR492065_graphs
 {% endhighlight %}
 
 Bandage is loaded through the conda environment `GA2018`.
