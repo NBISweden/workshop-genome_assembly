@@ -138,7 +138,7 @@ rm "$TMPFILE"
 <details>
 <summary> Solution - click to expand </summary>
 
-{% highlight %}
+{% highlight bash %}
 READ1=Enterococcus_faecalis/SRR492065_1.fastq.gz
 READ2=Enterococcus_faecalis/SRR492065_2.fastq.gz
 PREFIX=$(basename ${READ1%_1.*} )
