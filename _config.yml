@@ -25,4 +25,23 @@ menu:
     url: travel
   - title: Workshop Material
     submenus:
-      - title: Exercise
+      - title: Exercise 1
+        url: exercises/exercise_1
+      - title: Exercise 2
+        url: exercises/exercise_2
+      - title: Exercise 3
+        url: exercises/exercise_3
+      - title: Exercise 4
+        url: exercises/exercise_4
+      - title: Exercise 6
+        url: exercises/exercise_6
+      - title: Exercise 7
+        url: exercises/exercise_7
+      - title: Exercise 8
+        url: exercises/exercise_8
+      - title: Exercise 9
+        url: exercises/exercise_9
+      - title: Exercise 10
+        url: exercises/exercise_10
+      - title: Exercise 11
+        url: exercises/exercise_11
