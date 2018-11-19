@@ -31,6 +31,11 @@ What does the gene space look like for each assembly?
 
 Use Mauve to compare the assemblies to the reference.
 
+{% highlight bash %}
+module load bioinfo-tools mauve//2015-02-13
+Mauve
+{% endhighlight %}
+
 The reference is here:
 {% highlight bash %}
 /proj/sllstore2017027/workshop-GA2018/data/Illumina_SRR492065/Enterococcus_faecalis.fasta
