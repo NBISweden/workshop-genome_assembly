@@ -33,5 +33,3 @@ Test your Unix comfort with these exercises: [NGS Introduction - Introduction to
 Please follow the link here: [SciLifeLab Events Page - De Novo Genome Assembly](https://www.scilifelab.se/events/de-novo-genome-assembly/)
 
 
-
-1
