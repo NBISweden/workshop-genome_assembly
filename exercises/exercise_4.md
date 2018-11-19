@@ -6,24 +6,6 @@ date: 22nd November 2018
 
 # Data Quality Assessment
 
-## Introduction
-
-In order to make KAT available to you, a special environment has been built.
-
-Use the following command to activate the environment:
-
-{% highlight bash %}
-source /proj/sllstore2017027/workshop-GA2018/tools/anaconda/miniconda2/etc/profile.d/conda.sh
-conda activate GA2018
-kat --help
-{% endhighlight %}
-
-To deactivate the environment use:
-
-{% highlight bash %}
-conda deactivate
-{% endhighlight %}
-
 ## Exercises
 
 ### Task 1.
@@ -69,6 +51,14 @@ GGTA 1	GTAA 1	TAAT 1	AATA 1
 </details>
 
 ### Task 4.
+
+Load Kat with the following command:
+
+{% highlight bash %}
+source /proj/sllstore2017027/workshop-GA2018/tools/anaconda/miniconda2/etc/profile.d/conda.sh
+conda activate GA2018
+kat --help
+{% endhighlight %}
 
 Use `kat hist` to obtain a histogram of data **Enterococcus_faecalis/SRR492065_{1,2}.fastq.gz**.
 What is the approximate k-mer coverage? Is anything wrong with this histogram?

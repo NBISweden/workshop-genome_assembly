@@ -14,7 +14,8 @@ Run NanoPlot on your PacBio data. The results can be opened using `firefox`.
 What are the average and median length of the long reads.
 
 {% highlight bash %}
-PATH="$PATH:/proj/sllstore2017027/workshop-GA2018/tools/NanoPlot/bin"
+source /proj/sllstore2017027/workshop-GA2018/tools/anaconda/miniconda2/etc/profile.d/conda.sh
+conda activate GA2018
 NanoPlot --help
 {% endhighlight %}
 
