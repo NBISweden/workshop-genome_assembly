@@ -71,21 +71,21 @@ conda activate GA2018
 Minimap2:
 {% highlight bash %}
 conda activate GA2018
-{% endhighlight}
+{% endhighlight %}
 
 Miniasm:
 {% highlight bash %}
 conda activate GA2018
-{% endhighlight}
+{% endhighlight %}
 
-Wtdbg2
+Wtdbg2:
 {% highlight bash %}
 export PATH="$PATH:/proj/sllstore2017027/workshop-GA2018/tools/wtdbg2"
-{% endhighlight}
+{% endhighlight %}
 
 Medaka:
 {% highlight bash %}
 source /proj/sllstore2017027/workshop-GA2018/tools/medaka/venv/bin/activate
 # to unload the virtual environment use
 deactivate
-{% endhighlight}
+{% endhighlight %}
