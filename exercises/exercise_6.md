@@ -220,6 +220,7 @@ How do these results compare to the Quast results?
 
 <details>
 <summary> Solution - click to expand </summary>
+<div markdown="1">
 
 {% highlight bash %}
 for BAM in *.bam; do
@@ -238,8 +239,9 @@ plot for [data in files] data using 1:2 with lines title data
 EOF
 {% endhighlight %}
 
-![An FRC curve comparison of the assemblies](img/FRC_Curve_all_assemblies.png)
+![An FRC curve comparison of the assemblies]({{ site.url }}/workshop-genome_assembly/exercises/img/FRC_Curve_all_assemblies.png)
 
+</div>
 </details>
 
 ### Task 4.
