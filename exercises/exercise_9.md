@@ -16,27 +16,27 @@ do evaluate every combination, so choose your tasks wisely.
 
 ### Illumina data.
 
-a. Subsample the data to 50x, 150x, and 250x coverage.
-b. Produce summaries of the subsampled data.
-c. Assemble the data using Spades, Abyss, and MaSuRCA.
-d. Polish using Pilon or Racon.
-e. Evaluate the assemblies with Quast, Busco, KAT, Bandage and FRC
+* Subsample the data to 50x, 150x, and 250x coverage.
+* Produce summaries of the subsampled data.
+* Assemble the data using Spades, Abyss, and MaSuRCA.
+* Polish using Pilon or Racon.
+* Evaluate the assemblies with Quast, Busco, KAT, Bandage and FRC
 
 ### PacBio data.
 
-a. Subsample the data to 10x, 30x, and 70x coverage.
-b. Produce summaries of the subsampled data.
-c. Assemble the data using Canu, Miniasm, and wtdbg2.
-d. Polish with Arrow or Racon.
-e. Evaluate the assemblies with Quast, Busco, and Bandage.
+* Subsample the data to 10x, 30x, and 70x coverage.
+* Produce summaries of the subsampled data.
+* Assemble the data using Canu, Miniasm, and wtdbg2.
+* Polish with Arrow or Racon.
+* Evaluate the assemblies with Quast, Busco, and Bandage.
 
 ### Nanopore data.
 
-a. Subsample the data to 10x, 30x, and 70x coverage.
-b. Produce summaries of the subsampled data.
-c. Assemble the data using Canu, Miniasm, and wtdbg2.
-d. Polish with Medaka or Racon.
-e. Evaluate the assemblies with Quast, Busco, and Bandage.
+* Subsample the data to 10x, 30x, and 70x coverage.
+* Produce summaries of the subsampled data.
+* Assemble the data using Canu, Miniasm, and wtdbg2.
+* Polish with Medaka or Racon.
+* Evaluate the assemblies with Quast, Busco, and Bandage.
 
 ### How to load the tools.
 
