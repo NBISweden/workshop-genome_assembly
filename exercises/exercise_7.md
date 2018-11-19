@@ -64,6 +64,7 @@ apply_Blast () {
 ### Task 3.  
 
 Run Blobtools on each assembly. Blobtools requires both a BAM file as input and blast output for the classification step.
+What do these plots show?
 
 {% highlight bash %}
 module load bioinfo-tools blobtools/1.0-af55ced
@@ -82,10 +83,13 @@ apply_blobtools () {
 }
 {% endhighlight %}
 
+
+
 ### Task 4.
 
-Bandage is a great tool to visualise assembly graphs. The assembly graphs for some of the assemblies can be found here.
+Bandage is a great tool to visualise assembly graphs. Load and draw some of the assembly graphs.
 
+The assembly graphs for some of the assemblies can be found here:
 {% highlight bash %}
 /proj/sllstore2017027/workshop-GA2018/data/SRR492065_graphs
 {% endhighlight %}
