@@ -25,26 +25,6 @@ menu:
     url: travel
   - title: Workshop Material
     submenus:
-      - title: Getting started in genome assembly
-        url: sessions/session_1
-      - title: Corruption, Coverage, and Subsampling
-        url: sessions/session_2
-      - title: FastQC, Contamination, Trimming, Duplication, and filtering
-        url: sessions/session_3
-      - title: Kmer Analysis using KAT
-        url: sessions/session_4
-      - title: Overview of de novo assembler principles
-        url: sessions/session_5
-      - title: Assembly Statistics, and misassembly detection
-        url: sessions/session_6
-      - title: Assembly Graphs and contamination detection
-        url: sessions/session_7
-      - title: Gene space statistics and comparitive alignment
-        url: sessions/session_8
-      - title: Small genome Assembly
-        url: sessions/session_9
-      - title: Scaffolding, Gap Filling, Assembly Reconcilliation
-        url: sessions/session_10
-      - title: Challenges in Eukaryote assembly
-        url: sessions/session_11
+      - title: Exercise 1
+        url: exercises/exercise_1
 
