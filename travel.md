@@ -7,7 +7,7 @@
 Enter through the C11 entrance, now also called the SciLife entrance. Forward and and to the right 
 from the C11 entrance is the door to the new SciLife building ("the Hub"; E10 on the map) built on 
 one of the inner courtyards of BMC. If you do not have an access card you will need someone to let 
-you in through to the door to the Hub. The room for the course, E10:1309, is on the ground floor of 
+you in through to the door to the Hub. The room for the course, E10:1307, is on the ground floor of 
 the new building.
 
 ![Map of LifeLifeLab at Uppsala BMC](files/MapBMCScilife.png)
