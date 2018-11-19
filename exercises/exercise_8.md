@@ -20,7 +20,7 @@ source $BUSCO_SETUP
 apply_BUSCO () {
 	ASSEMBLY="$1" # The assembly is the first parameter to this function. The file must end in .fasta
 	LINEAGE="$BUSCO_LINEAGE_SETS/bacteria_odb9"
-	PREFIX=( basename "$ASSEMBLY" .fasta )
+	PREFIX=$( basename "$ASSEMBLY" .fasta )
 	run_BUSCO.py -i "$ASSEMBLY" -l "$LINEAGE" -c "${CPUS:-10}" -m genome -o "${PREFIX}_busco"
 }
 {% endhighlight %}
