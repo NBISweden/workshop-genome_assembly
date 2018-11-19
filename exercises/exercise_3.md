@@ -278,6 +278,7 @@ rsync -av "$SNIC_TMP/$TMPDB/" kraken_bacterial_db
 
 <details>
 <summary> Solution - click to expand </summary>
+<div markdown="1">
 
 {% highlight bash %}
 CPUS=${SLURM_NPROCS:-10}
@@ -302,6 +303,7 @@ To make an image, open the html file and click on the snapshot button. Then save
 
 The Kraken analysis shows at least three organisms in the sample; Enterococcus, Staphylococcus, and Cutibacterium. Enterococcus also shows a higher abundance than both Staphylococcus and Cutibacterium, which are both in similar proportions.
 
+</div>
 </details>
 
 ### Task 15.
