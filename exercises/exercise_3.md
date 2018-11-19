@@ -369,9 +369,9 @@ sort --parallel="$CPUS" "${LIST_1_TSV}" "${LIST_2_TSV}" "${LIST_2_TSV}" | uniq -
 # List of read names not mapped to Cutibacterium
 LIST_1_TSV=Staphylococcus_aureus_removed_reads.tsv
 LIST_2_TSV=Cutibacterium_avidum_aligned_reads.tsv
-sort --parallel="$CPUS" "${LIST_1_TSV}" "${LIST_2_TSV}" "${LIST_2_TSV}" | uniq -u > "Enterococcus_only_reads.tsv"
+sort --parallel="$CPUS" "${LIST_1_TSV}" "${LIST_2_TSV}" "${LIST_2_TSV}" | uniq -u > "SRR492065_Enterococcus_only_reads.tsv"
 # Get filtered fastqs
-LIST_3_TSV=Enterococcus_only_reads.tsv
+LIST_3_TSV=SRR492065_Enterococcus_only_reads.tsv
 join -t ' ' <( zcat "$READ1" | paste - - - - | sort -k1,1 ) <( sed 's/^/@/' "${LIST_3_TSV}" ) | tr '\t' '\n' | pigz -c > "${LIST_3_TSV%%_*}_cleaned_R1.fastq.gz"
 join -t ' ' <( zcat "$READ2" | paste - - - - | sort -k1,1 ) <( sed 's/^/@/' "${LIST_3_TSV}" ) | tr '\t' '\n' | pigz -c > "${LIST_3_TSV%%_*}_cleaned_R2.fastq.gz"
 {% endhighlight %}
