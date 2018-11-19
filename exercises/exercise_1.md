@@ -24,6 +24,13 @@ kat --help
 conda deactivate
 {% endhighlight %}
 
+To give you enough disk space to work, please use the following commands to make a directory for yourself:
+
+{% highlight bash %}
+WORKDIR=/proj/sllstore2017027/nobackup_GA2018/$USER
+mkdir -p "$WORKDIR"
+cd "$WORKDIR"
+{% endhighlight %}
 
 ### Task 1: Describe your own project
 
