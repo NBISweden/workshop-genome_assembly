@@ -38,4 +38,4 @@ cd "$WORKDIR"
 * What might hinder DNA extraction for your organism?
 * Which sequencing technologies are suitable for your assembly?
 * What kind of computational resources might you need?
-* How difficult is level of assembly you're trying to achieve?
+* How difficult is the level of assembly you're trying to achieve?
