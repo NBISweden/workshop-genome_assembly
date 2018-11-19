@@ -86,7 +86,7 @@ kat hist -t "$CPUS" -o "${PREFIX}.hist" "$TMPFILE"
 rm "$TMPFILE"
 {% endhighlight %}
 
-![A k-mer histogram of the SRR492065 data.]()
+![A k-mer histogram of the SRR492065 data.](img/SRR492065.hist.png)
 
 The homozygous peak in the histogram is at 49x k-mer coverage.
 
@@ -138,7 +138,7 @@ kat gcp -t "$CPUS" -o "${PREFIX}.gcp" "$TMPFILE"
 rm "$TMPFILE"
 {% endhighlight %}
 
-![A GC content plot of SRR492065 data.]()
+![A GC content plot of SRR492065 data.](img/SRR492065.gcp.mx.png)
 
 The GC content scale (Y-axis) is the absolute GC count per k-mer. The default k-mer size is 27 and therefore the y-axis is from 0 to 27.
 One can estimate the average GC% of a blob from this scale by multiplying the approximate GC content value by 4 (since 4 * 27 == 108 =~ 100).
@@ -177,9 +177,9 @@ kat plot spectra-mx -x 50 -y 500000 --intersection -o "${PREFIX}_r1vr2.cmp-main.
 rm "$TMPFILE1" "$TMPFILE2"
 {% endhighlight %}
 
-![A density plot of READ1 vs READ2 in the SRR492065 data.]()
+![A density plot of READ1 vs READ2 in the SRR492065 data.](img/SRR492065_r1vr2.cmp-main.mx.density.png)
 
-![A spectra-mx plot of READ1 vs READ2 in the SRR492065 data.]()
+![A spectra-mx plot of READ1 vs READ2 in the SRR492065 data.](SRR492065_r1vr2.cmp-main.mx.spectra-mx.png)
 
 The spectra-mx plot shows the shared content for dataset 2 (READ2) is shifted to the left and slightly higher than
 the shared content of dataset 1 (READ1). From the previous FastQC analyses of these files we saw that READ2 has lower read qualities than READ1.

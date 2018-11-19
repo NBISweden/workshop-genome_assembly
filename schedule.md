@@ -52,9 +52,8 @@ Day 3                 |
 10.00 - 10.15         | *Coffee break / fika*
 10.15 - 12.00         | Session 9 [Exercises](exercises/exercise_9)
 12.00 - 13.00         | *Lunch*
-13.00 - 13.30         | **Session 10**: [Scaffolding, Gap Filling, Assembly Reconcilliation](slides/session_10)
+13.00 - 13.30         | **Session 10**: [Challenges in assembly](slides/session_10)
 13.30 - 15.00         | Session 10 [Exercises](exercises/exercise_10)
 15.00 - 15.15         | *Coffee break / fika*
-15.15 - 15.45         | **Session 11**: [Challenges in assembly](slides/session_11)
-15.45 - 17.00         | Session 11 [Exercises](exercises/exercise_11)
+15.15 - 17.00         | **Session 11**: Group Discussion and Summary
 

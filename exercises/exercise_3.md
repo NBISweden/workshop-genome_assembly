@@ -298,7 +298,7 @@ ktImportTaxonomy <( cut -f2,3 "${PREFIX}_kraken.tsv" ) -o "${PREFIX}_kraken_kron
 
 To make an image, open the html file and click on the snapshot button. Then save the resulting image to `SRR492065_kraken_krona.svg`.
 
-![A Krona plot of the Kraken analysis of SRR492065.](SRR492065_kraken_krona.svg)
+![A Krona plot of the Kraken analysis of SRR492065.](img/SRR492065_kraken_krona.svg)
 
 The Kraken analysis shows at least three organisms in the sample; Enterococcus, Staphylococcus, and Cutibacterium. Enterococcus also shows a higher abundance than both Staphylococcus and Cutibacterium, which are both in similar proportions.
 

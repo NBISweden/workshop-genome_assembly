@@ -236,7 +236,7 @@ plot for [data in files] data using 1:2 with lines title data
 EOF
 {% endhighlight %}
 
-![An FRC curve comparison of the assemblies](images/frc/FRC_Curve_all_assemblies.png)
+![An FRC curve comparison of the assemblies](img/FRC_Curve_all_assemblies.png)
 
 </details>
 
@@ -299,6 +299,3 @@ apply_katcomp spades_k21-55_normalized.fasta ../SRR492065_normalized_1.fastq.gz 
 {% endhighlight %}
 
 </details>
-
-
-### Task 6.

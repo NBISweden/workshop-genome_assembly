@@ -83,8 +83,6 @@ apply_blobtools () {
 }
 {% endhighlight %}
 
-
-
 ### Task 4.
 
 Bandage is a great tool to visualise assembly graphs. Load and draw some of the assembly graphs.
