@@ -11,6 +11,7 @@ Test if graphical applications are available to you by typing the following:
 {% highlight bash %}
 module load bioinfo-tools FastQC
 fastqc
+module unload FastQC
 {% endhighlight %}
 
 Some tools are not available using the `module` system. We've provided these through a package manager called
@@ -20,6 +21,7 @@ Some tools are not available using the `module` system. We've provided these thr
 source /proj/sllstore2017027/workshop-GA2018/tools/anaconda/miniconda2/etc/profile.d/conda.sh
 conda activate GA2018
 kat --help
+conda deactivate
 {% endhighlight %}
 
 

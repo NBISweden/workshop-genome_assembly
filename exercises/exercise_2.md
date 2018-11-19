@@ -41,7 +41,7 @@ Copy the exercise files to your working directory, but interrupt transfer with `
 
 {% highlight bash %}
 cd $WORKDIR # Change directory to my working directory
-cp -vlr /proj/sllstore2017027/workshop-GA2018/data/QC_files/* . # Copy all the files to my working directory
+cp -vr /proj/sllstore2017027/workshop-GA2018/data/QC_files/* . # Copy all the files to my working directory
 {% endhighlight %}
 
 Use the `-c` option of `md5sum` to check the files are complete.

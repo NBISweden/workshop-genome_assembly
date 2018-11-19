@@ -35,6 +35,7 @@ Running a single assembly on the resources allocated to you can take up to an ho
 Copy the results we have already provided and inspect them.
 
 {% highlight bash %}
+/proj/sllstore2017027/workshop-GA2018/data/SRR492065_blast/
 {% endhighlight %}
 
 The results were generated in the following way:
