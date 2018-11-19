@@ -5,7 +5,7 @@ title:  'Schedule'
 
 # Schedule
 
-This course is given at Navet (E10:1309) at BMC.
+This course is given at Navet (E10:1307) at BMC.
 
 Instructors:
 * Henrik Lantz
