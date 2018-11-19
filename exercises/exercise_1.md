@@ -34,7 +34,7 @@ cd "$WORKDIR"
 
 ### Task 1: Describe your own project
 
-* Describe the properties of your genome of interest
+* Describe the properties of your genome of interest. If you can not think of a good example, use the insect ladybird, with an estimated genome size of 200 Mbp. For this example, you want to assemble as much as possible of the gene space.
 * What might hinder DNA extraction for your organism?
 * Which sequencing technologies are suitable for your assembly?
 * What kind of computational resources might you need?
