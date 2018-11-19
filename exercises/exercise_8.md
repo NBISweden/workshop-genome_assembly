@@ -75,21 +75,30 @@ prokka --cpus "${CPUS:-10}" --outdir Prokka_annotation Ecoli_polished_assembly.f
 grep "rpmH\|dnaA" "$GFF_FILE"
 {% endhighlight %}
 
-Use `Bedtools` to check there are no other genes between this region. The GFF file written by Prokka is not
+Use `Bedtools` to check there are no other genes between this region. Use the start of the rpmH gene as `$START`
+and the end of the dnaA gene as `$END`. The GFF file written by Prokka is not
 strictly formatted as GFF and contains other data. The awk command retains only the needed lines of the file.
+The output is all the genes in this region.
 
 {% highlight bash %}
-printf "unitig_0_quiver\t%d\t%d" $START $END > replication_origin_region.bed
+printf "unitig_0_quiver\t%d\t%d" $START $END | tee replication_origin_region.bed
 bedtools intersect -wa -a <( awk 'NF > 3 || $0 ~ /^#/' "$GFF_FILE" ) -b replication_origin_region.bed
 {% endhighlight %}
 
 ### Task 5.
 
-Select a point between the genes to use as a break point. Use samtools to break the polished assembly at this point.
+Select a point between the genes (not within a gene) to use as a break point.
+Use samtools to break the polished assembly at this point. Redirect the output
+of both commands to a file called `Ecoli_broken.fasta`. Modify the commands
+as necessary to get a section to overlap at the ends of the contigs.
 
 {% highlight bash %}
-samtools faidx 'unitig_0|quiver':"$BREAK" > Ecoli_broken.fasta
-samtools faidx 'unitig_0|quiver':1-"$BREAK" >> Ecoli_broken.fasta
+# This selects all the sequence on 'unitig_0|quiver' starting from $BREAK until the end of the sequence
+# The output is redirected ( > ) to Ecoli_broken.fasta
+samtools faidx Ecoli_polished_assembly.fasta 'unitig_0|quiver':"$BREAK" > Ecoli_broken.fasta
+# This selects all the sequence on 'unitig_0|quiver' starting from 1 until $BREAK (inclusive)
+# The output is appended ( >> ) to Ecoli_broken.fasta
+samtools faidx Ecoli_polished_assembly.fasta 'unitig_0|quiver':1-"$BREAK" >> Ecoli_broken.fasta
 {% endhighlight %}
 
 Merge the broken pieces again using AMOS.

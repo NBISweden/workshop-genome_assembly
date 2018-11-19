@@ -72,6 +72,7 @@ Which assembly looks the best?
 
 <details>
 <summary> Solution - click to expand </summary>
+<div markdown="1">
 
 First run Quast on all the assemblies.
 
@@ -79,12 +80,13 @@ First run Quast on all the assemblies.
 quast.py -t "${CPUS:-10}" --est-ref-size 3200000 *.fasta
 {% endhighlight %}
 
-![Quast Cumulative Length Plot](images/quast/cumulative_plot.png)
+![Quast Cumulative Length Plot]({{ site.url }}/workshop-genome_assembly/exercises/img/cumulative_plot.png)
 
-![Quast NGx Plot](images/quast/NGx_plot.png)
+![Quast NGx Plot]({{ site.url }}/workshop-genome_assembly/exercises/img/NGx_plot.png)
 
-![Quast GC Plot](images/quast/GC_content_plot.png)
+![Quast GC Plot]({{ site.url }}/workshop-genome_assembly/exercises/img/GC_content_plot.png)
 
+</div>
 </details>
 
 ### Task 2.
