@@ -23,6 +23,8 @@ menu:
     url: schedule
   - title: Travel info
     url: travel
+  - title: Wiki
+    url: https://github.com/NBISweden/workshop-genome_assembly/wiki
   - title: Workshop Material
     submenus:
       - title: Exercise 1

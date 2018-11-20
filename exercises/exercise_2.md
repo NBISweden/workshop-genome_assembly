@@ -40,6 +40,7 @@ find -type "f" -exec md5sum {} \; | tee $WORKDIR/checksums.md5 # redirected outp
 Copy the exercise files to your working directory, but interrupt transfer with `ctrl + c`.
 
 {% highlight bash %}
+echo "$WORKDIR" # to check your $WORKDIR variable is set, otherwise type the path manually.
 cd $WORKDIR # Change directory to my working directory
 cp -vr /proj/sllstore2017027/workshop-GA2018/data/QC_files/* . # Copy all the files to my working directory
 {% endhighlight %}
