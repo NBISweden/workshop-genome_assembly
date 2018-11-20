@@ -8,6 +8,9 @@ date: 22nd November 2018
 
 ## Exercises
 
+For information about Sequencing technologies and file formats see our Wiki page.
+[NBIS Genome Assembly Wiki](https://github.com/NBISweden/workshop-genome_assembly/wiki)
+
 ### Task 1.
 
 Change directory to the exercise data folder (`/proj/sllstore2017027/workshop-GA2018/data/QC_files`). Use `md5sum` to calculate the checksum of all the data files in the exercise data folder. Redirect the checksum values to a file called **checksums.md5** in your working directory. Then change directory to your working directory. Your working directory is the directory where you will conduct your analyses.
