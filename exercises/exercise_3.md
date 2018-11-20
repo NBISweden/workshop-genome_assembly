@@ -8,6 +8,23 @@ date: 22nd November 2018
 
 ## Exercises
 
+Nanoplot and FastQC produce html files as output. These can be opened on the login node using `firefox`,
+however running graphical applications across a network is slow. Alternatively you can download the
+html files to your computer using either `scp` or `rsync`. You can then open the downloaded files with your
+own html browser.
+
+In a terminal, on your computer (not the login node) type the following:
+
+{% highlight bash %}
+scp username@rackham.uppmax.uu.se:/path/to/files/filename /path/to/download
+{% endhighlight %}
+
+The command is similar using `rsync`:
+
+{% highlight bash %}
+rsync -av username@rackham.uppmax.uu.se:/path/to/files/filename /path/to/download
+{% endhighlight %}
+
 ### Task 1.
 
 Run NanoPlot on your PacBio data. The results can be opened using `firefox`.
