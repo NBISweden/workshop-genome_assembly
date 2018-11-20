@@ -89,7 +89,7 @@ rm "$TMPFILE"
 
 ![A k-mer histogram of the SRR492065 data.]({{ site.url }}/workshop-genome_assembly/exercises/img/SRR492065.hist.png)
 
-The homozygous peak in the histogram is at 49x k-mer coverage.
+The homozygous peak in the histogram is at 116x k-mer coverage.
 
 The histogram is unusual because there is a higher than expected frequency of low frequency k-mers.
 
@@ -104,11 +104,11 @@ Does this correspond to the estimated genome size of Enterococcus faecalis?
 <details>
 <summary> Solution - click to expand </summary>
 
-The peak of the histogram is at around 50x coverage, read length is 100, and the k-mer size is 27. This leads to
-a read depth of M * L / (L - K + 1) = 50 * 100 / (100 - 27 + 1) =~ 68x read depth of coverage.
+The peak of the histogram is at around 116x coverage, read length is 100, and the k-mer size is 27. This leads to
+a read depth of M * L / (L - K + 1) = 116 * 100 / (100 - 27 + 1) =~ 156x read depth of coverage.
 
 The total number of bases in the data set is 1070871200, and therefore the estimated genome size is
-G = T / N = 1070871200 / 68 = 15748106 =~ 15.75 Mb. From before we know the genome size is 3.22 Mb, so the
+G = T / N = 1070871200 / 156 = 6864559 =~ 6.8 Mb. From before we know the genome size is 3.22 Mb, so the
 estimated genome size also indicates something unusual about the data.
 
 </details>
