@@ -26,6 +26,8 @@ conda deactivate
 
 To give you enough disk space to work, please use the following commands to make a directory for yourself:
 
+The `$USER` variable is already set to your username. Copy and paste the instructions below.
+
 {% highlight bash %}
 WORKDIR=/proj/sllstore2017027/nobackup_GA2018/$USER
 mkdir -p "$WORKDIR"
