@@ -9,6 +9,7 @@ date: 22nd November 2018
 ## Exercises
 
 For information about Sequencing technologies and file formats see our Wiki page.
+
 [NBIS Genome Assembly Wiki](https://github.com/NBISweden/workshop-genome_assembly/wiki)
 
 ### Task 1.
