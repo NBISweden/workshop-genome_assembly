@@ -282,7 +282,12 @@ kraken2 --threads "$CPUS" --db "$KRAKEN2DB" --report "${PREFIX}_kraken.rpt" --gz
 ktImportTaxonomy <( cut -f2,3 "${PREFIX}_kraken.tsv" ) -o "${PREFIX}_kraken_krona.html"
 {% endhighlight %}
 
-It takes a very long time to build the database, so we have provided a build for you above. The database was built using the following commands. See the Kraken2 homepage for how to build more comprehensive databases.
+It takes a very long time to build the database, so we have provided a build for you above.
+
+<details>
+<summary> Click here to see how the database was built </summary>
+
+This is how we built the database for you. See the Kraken2 homepage for how to build more comprehensive databases.
 
 {% highlight bash %}
 CPUS=${SLURM_NPROCS:-10}
@@ -292,6 +297,8 @@ kraken2-build --download-library bacteria --db "$SNIC_TMP/$TMPDB"
 kraken2-build --build --threads "$CPUS" --db "$SNIC_TMP/$TMPDB"
 rsync -av "$SNIC_TMP/$TMPDB/" kraken_bacterial_db
 {% endhighlight %}
+
+</details>
 
 <details>
 <summary> Solution - click to expand </summary>
