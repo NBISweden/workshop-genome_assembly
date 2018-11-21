@@ -101,3 +101,5 @@ Bandage --help
 ### Task 5.
 
 Use the Kraken and Blast results to create a label csv to load into bandage and identify scaffolds.
+
+Hint: Use the unix command line tools such as `grep`, `cut`, and `join` to manipulate the data.
