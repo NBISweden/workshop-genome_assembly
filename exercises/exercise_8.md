@@ -151,7 +151,7 @@ The reference is here:
 
 Reorder the assemblies with respect to the reference (`Tools > Move contigs`), and then make an alignment (`align with ProgressiveMauve`).
 
-Hint: You can use `grep ">" assembly.fasta | less -S` to see if the contigs have been reordered.
+Hint: Reordered are in an alignment folder. You can use `grep ">" assembly.fasta | less -S` to see if the contigs have been reordered.
 
 ### Task 3.
 
