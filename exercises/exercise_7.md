@@ -105,7 +105,7 @@ Use the Kraken and Blast results to create a label csv to load into bandage and 
 Look at the workshop wiki for a brief description of the GFA file format, and the
 [Bandage webpage](https://github.com/rrwick/Bandage/wiki/CSV-labels) for information on how to construct the csv.
 
-Hint: Use the unix command line tools such as `grep`, sort, `cut`, and `join` to manipulate the data into csv.
+Hint: Use the unix command line tools such as `grep`, `sort`, `cut`, and `join` to manipulate the data into csv.
 
 <details>
 <summary> Solution - click to expand </summary>
