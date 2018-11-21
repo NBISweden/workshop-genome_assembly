@@ -12,7 +12,16 @@ This is a team project, so split up the workload as you see fit.
 You have three datasets from the Ecoli K12 substrain MG1655, sequenced using Illumina, PacBio, and Nanopore.
 
 The aim is for you to try and explore different assemblers and see what you get. It will be impossible to
-do evaluate every combination, so choose your tasks wisely.
+do evaluate every combination, so choose your tasks wisely. Document your commands and share them with
+each other.
+
+Working directories have been created for each team:
+{% highlight bash %}
+/proj/sllstore2017027/nobackup_GA2018/team_Turtle
+/proj/sllstore2017027/nobackup_GA2018/team_Wolf
+/proj/sllstore2017027/nobackup_GA2018/team_Rhino
+/proj/sllstore2017027/nobackup_GA2018/team_Rooster
+{% endhighlight %}
 
 ### Illumina data.
 
