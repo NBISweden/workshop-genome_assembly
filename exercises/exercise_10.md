@@ -27,6 +27,14 @@ Next, tools to process that data are required. These should give you a good star
 
 [Hi-C Scaffolding with SALSA](https://github.com/machinegun/SALSA)
 
+For the task, take look at the Datasets page, follow the link to the Illumina Ecoli ERX008638 dataset.
+Start a download of read 1 from the ftp link directly to your workspace with the `wget` command (replace
+`$URL` with the link you copied).
+
+{% highlight bash %}
+wget "$URL"
+{% endhighlight %}
+
 ### Task 2.
 
 10X Genomics is a fairly recent platform designed for assembling large genomes, but also with phased output.
