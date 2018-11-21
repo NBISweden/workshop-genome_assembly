@@ -150,6 +150,7 @@ The reference is here:
 {% endhighlight %}
 
 Reorder the assemblies with respect to the reference (`Tools > Move contigs`), and then make an alignment (`align with ProgressiveMauve`).
+Mauve will first ask which directory you want to store your results, and then ask you which files to align.
 
 Hint: Reordered are in an alignment folder. You can use `grep ">" assembly.fasta | less -S` to see if the contigs have been reordered.
 
