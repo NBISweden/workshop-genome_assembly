@@ -288,4 +288,8 @@ Now we have a CSV file that can be loaded into bandage.
 
 After loading the network into bandage, we can see that the largest network is a mix of Enterococcus, Staphylococcus, and Cutibacterium.
 
+{% highlight bash %}
+Bandage load spades_k21-55_full.gfa --draw
+{% endhighlight %}
+
 </details>
