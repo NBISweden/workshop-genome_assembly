@@ -151,6 +151,8 @@ The reference is here:
 
 Reorder the assemblies with respect to the reference (`Tools > Move contigs`), and then make an alignment (`align with ProgressiveMauve`).
 
+Hint: You can use `grep ">" assembly.fasta | less -S` to see if the contigs have been reordered.
+
 ### Task 3.
 
 Let's change datasets now and re-circularize a different bacterial assembly.
