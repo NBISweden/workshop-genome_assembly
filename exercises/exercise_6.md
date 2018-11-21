@@ -257,6 +257,8 @@ module load bioinfo-tools IGV/2.4.2
 igv.sh
 {% endhighlight %}
 
+In order for IGV to load the BAM file, you need to make also download the index for it as well.
+
 ### Task 5.
 
 KAT is useful tool for high accuracy sequence data. The spectra-cn (copy number spectra) graph shows a

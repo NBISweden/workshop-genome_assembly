@@ -74,12 +74,12 @@ ln -s ../*.fasta .
 ln -s ../BWA/*.bam .
 ln -s ../Blast/*.tsv .
 apply_blobtools () {
-	ASSEMBLY="$1" # The assembly is the first parameter to this function. The file must end in .fasta
-	BAM="$2" # The BAM file is the second parameter to this function
-	BLAST="$3" # The BLAST file is the third parameter to this function
-	PREFIX=$( basename "$ASSEMBLY" .fasta )
-	blobtools create -i "$ASSEMBLY" -b "$BAM" -t "$BLAST" -o "${PREFIX}_blobtools"
-	blobtools blobplot -i "${PREFIX}_blobtools.blobDB.json" -o "${PREFIX}_blobtools"
+    ASSEMBLY="$1" # The assembly is the first parameter to this function. The file must end in .fasta
+    BAM="$2" # The BAM file is the second parameter to this function
+    BLAST="$3" # The BLAST file is the third parameter to this function
+    PREFIX=$( basename "$ASSEMBLY" .fasta )
+    blobtools create -i "$ASSEMBLY" -b "$BAM" -t "$BLAST" -o "${PREFIX}_blobtools"
+    blobtools blobplot -i "${PREFIX}_blobtools.blobDB.json" -o "${PREFIX}_blobtools"
 }
 {% endhighlight %}
 
