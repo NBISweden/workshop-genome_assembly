@@ -244,7 +244,7 @@ tools run quicker.
 module load bioinfo-tools SMRT/5.0.1 samtools/1.8
 
 # Subsample in the dataset in the interests of time (use the full dataset for a normal run)
-samtools view -b -@ "${CPUS:-0}" -s 0.10 -o "${PREFIX}.subsampled.subreads.bam" "${PREFIX}.subreads.bam"
+samtools view -b -@ "${CPUS:-10}" -s 0.10 -o "${PREFIX}.subsampled.subreads.bam" "${PREFIX}.subreads.bam"
 
 # Index the assembly for arrow
 samtools faidx "$ASSEMBLY"
