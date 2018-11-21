@@ -49,15 +49,14 @@ set_difference () {
 	sort "$1" "$2" "$2" | uniq -u
 }
 apply_Blast () {
-	ASSEMBLY="$1" # The assembly is the first parameter to this function. The file must end in .fasta
-	PREFIX=$( basename "$ASSEMBLY" .fasta )
-	echo "Blast: $ASSEMBLY"
-	blastn -task megablast -query "$ASSEMBLY" -db "${BLASTDB:-/sw/data/uppnex/blast_databases}/nt" \
-		-outfmt '6 qseqid staxids bitscore std sscinames sskingdoms stitle' \
-		-culling_limit 5 -num_threads "${CPUS:-10}" -evalue 1e-25 -out "${PREFIX}_blast_alignment.tsv"
-	# Blast tabular output does not include `no hit`. The set difference is used to include remaining unclassified sequence.
-	ktImportTaxonomy <( cat <( cut -f1,2 "${PREFIX}_blast_alignment.tsv" | sort -u ) <( set_difference <( grep ">" "$ASSEMBLY" | cut -c2- ) <(cut -f1 "${PREFIX}_blast_alignment.tsv" ) )) -o "${PREFIX}_blast_krona.html"
-
+    ASSEMBLY="$1" # The assembly is the first parameter to this function. The file must end in .fasta
+    PREFIX=$( basename "$ASSEMBLY" .fasta )
+    echo "Blast: $ASSEMBLY"
+    blastn -task megablast -query "$ASSEMBLY" -db "${BLASTDB:-/sw/data/uppnex/blast_databases}/nt" \
+        -outfmt '6 qseqid staxids bitscore std sscinames sskingdoms stitle' \
+        -culling_limit 5 -num_threads "${CPUS:-10}" -evalue 1e-25 -out "${PREFIX}_blast_alignment.tsv"
+    # Blast tabular output does not include `no hit`. The set difference is used to include remaining unclassified sequence.
+    ktImportTaxonomy <( cat <( cut -f1,2 "${PREFIX}_blast_alignment.tsv" | sort -u ) <( set_difference <( grep ">" "$ASSEMBLY" | cut -c2- ) <(cut -f1 "${PREFIX}_blast_alignment.tsv" ) )) -o "${PREFIX}_blast_krona.html"
 }
 {% endhighlight %}
 
