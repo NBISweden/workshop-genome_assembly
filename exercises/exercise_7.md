@@ -102,4 +102,7 @@ Bandage --help
 
 Use the Kraken and Blast results to create a label csv to load into bandage and identify scaffolds.
 
-Hint: Use the unix command line tools such as `grep`, `cut`, and `join` to manipulate the data.
+Look at the workshop wiki for a brief description of the GFA file format, and the Bandage webpage for
+information on how to construct the csv.
+
+Hint: Use the unix command line tools such as `grep`, `cut`, and `join` to manipulate the data into csv.
