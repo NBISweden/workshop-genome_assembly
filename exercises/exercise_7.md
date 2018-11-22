@@ -100,15 +100,19 @@ Bandage --help
 
 ### Task 5.
 
-Use the Kraken and Blast results to create a label csv to load into bandage and identify scaffolds.
+Use the Blast results to create a label csv to load into bandage and identify scaffolds. Have a go
+at labelling only 5 sequences.
 
 Look at the workshop wiki for a brief description of the GFA file format, and the
 [Bandage webpage](https://github.com/rrwick/Bandage/wiki/CSV-labels) for information on how to construct the csv.
 
-Hint: Use the unix command line tools such as `grep`, `sort`, `cut`, and `join` to manipulate the data into csv.
+Hint: Use `nano`, a unix file editor to write the file.
+
+Optional: Use the unix command line tools such as `grep`, `sort`, `cut`, and `join` to manipulate the data into csv.
 
 <details>
 <summary> Solution - click to expand </summary>
+
 
 Bandage displays the segment lines (S) of a GFA file. The second column of a segment line is the node name.
 Spades contigs correspond to the path lines (P).
@@ -116,6 +120,30 @@ This means we need to know two things. First, what are the spades contigs annota
 paths correspond to which segments.
 
 Let's use the data for spades_k21-55_full as the example.
+
+Simple solution:
+
+Select five path lines from the path file.
+
+Then use grep to search for the contig names in the blast results.
+
+{% highlight bash %}
+grep "NODE_1000_length_306_cov_2.50996" spades_k21-55_full_blast_alignment.tsv
+{% endhighlight %}
+
+The result should be a file that looks something like this:
+
+{% highlight bash %}
+Node,Contig,Blast
+1511768+,NODE_1000_length_306_cov_2.509960,Staphylococcus epidermidis
+9815238+,NODE_1001_length_305_cov_4.088000,Staphylococcus epidermidis
+10091228+,NODE_1002_length_305_cov_3.296000,Staphylococcus epidermidis
+1099986+,NODE_1003_length_305_cov_2.700000,Staphylococcus hominis
+10320035+,NODE_1004_length_304_cov_39.807229,Paenibacillus sp. FSL R7-0331
+{% endhighlight %}
+
+
+Advanced solution:
 
 The aim is to combine the data from the GFA and Blast into one file based on a common feature, the contig names.
 This means this is a perfect task for `join`. However all the data is not in a format friendly for join, so let's
