@@ -81,7 +81,7 @@ canu -p ecoli -d ecoli-pacbio useGrid=false genomeSize=4.6m -pacbio-raw pacbio.f
 minimap2/minimap2 -x ava-pb -t8 pb-reads.fq pb-reads.fq | gzip -1 > reads.paf.gz
 # Layout
 miniasm/miniasm -f reads.fq reads.paf.gz > reads.gfa
-{% endhightlight %}
+{% endhighlight %}
 
 {% highlight bash %}
 # assemble long reads
