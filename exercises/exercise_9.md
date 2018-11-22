@@ -73,7 +73,21 @@ bash assemble.sh
 * Evaluate the assemblies with Quast, Busco, and Bandage.
 
 {% highlight bash %}
-canu useGrid=false -pacbio-raw "$PACBIO_READS"
+canu -p ecoli -d ecoli-pacbio useGrid=false genomeSize=4.6m -pacbio-raw pacbio.fastq
+{% endhighlight %}
+
+{% highlight bash %}
+# Overlap for PacBio reads (or use "-x ava-ont" for nanopore read overlapping)
+minimap2/minimap2 -x ava-pb -t8 pb-reads.fq pb-reads.fq | gzip -1 > reads.paf.gz
+# Layout
+miniasm/miniasm -f reads.fq reads.paf.gz > reads.gfa
+{% endhightlight %}
+
+{% highlight bash %}
+# assemble long reads
+./wtdbg2 -t 16 -i reads.fa.gz -fo prefix -L 5000
+# derive consensus
+./wtpoa-cns -t 16 -i prefix.ctg.lay -fo prefix.ctg.lay.fa
 {% endhighlight %}
 
 ### Nanopore data.
@@ -83,6 +97,10 @@ canu useGrid=false -pacbio-raw "$PACBIO_READS"
 * Assemble the data using Canu, Miniasm, and wtdbg2.
 * Polish with Medaka or Racon.
 * Evaluate the assemblies with Quast, Busco, and Bandage.
+
+{% highlight bash %}
+canu -p ecoli -d ecoli-oxford useGrid=false genomeSize=4.8m -nanopore-raw oxford.fasta
+{% endhighlight %}
 
 ### How to load the tools.
 
