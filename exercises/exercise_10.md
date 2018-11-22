@@ -66,7 +66,7 @@ supernova mkfastq --run tiny-bcl-2.0.0 --id=tiny-bcl --samplesheet=tiny-bcl-samp
 
 Now you can run Supernova on the fastq you just called.
 {% highlight bash %}
-supernova run --id=tiny --maxreads=all --fastqs tiny-bcl/outs/fastq_path/
+supernova run --id=tiny --maxreads=1200000000 --fastqs tiny-bcl/outs/fastq_path/
 {% endhighlight %}
 
 Supernova offers various styles of output of the assembly. Take a look at the
