@@ -64,6 +64,12 @@ masurca "${PREFIX}_masurca.cfg"
 bash assemble.sh
 {% endhighlight %}
 
+Running Pilon:
+
+{% highlight bash %}
+java -jar $PILON_HOME/pilon.jar --genome genome.fasta --frags reads_aligned_to_assembly.bam
+{% endhighlight %}
+
 ### PacBio data.
 
 * Subsample the data to 10x, 30x, and 70x coverage.
