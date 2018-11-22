@@ -242,11 +242,12 @@ Use `seqtk` to subsample **Escherichia_coli/ERR022075_{1,2}.fastq.gz** to approx
 <details>
 <summary> Solution - click to expand </summary>
 
-Since we want approximately 10% of the reads, we use a value of 0.1 as the fraction of reads to sample.
+Since we want approximately 10% of the reads, we use a value of 0.1 as the fraction of reads to sample. The output is
+piped to gzip to compress the file again.
 
 {% highlight bash %}
-seqtk sample -s100 Escherichia_coli/ERR022075_1.fastq.gz 0.1 > Escherichia_coli/ERR022075_100x_1.fastq.gz
-seqtk sample -s100 Escherichia_coli/ERR022075_2.fastq.gz 0.1 > Escherichia_coli/ERR022075_100x_2.fastq.gz
+seqtk sample -s100 Escherichia_coli/ERR022075_1.fastq.gz 0.1 | gzip -c > Escherichia_coli/ERR022075_100x_1.fastq.gz
+seqtk sample -s100 Escherichia_coli/ERR022075_2.fastq.gz 0.1 | gzip -c > Escherichia_coli/ERR022075_100x_2.fastq.gz
 {% endhighlight %}
 
 </details>

@@ -72,6 +72,10 @@ bash assemble.sh
 * Polish with Arrow or Racon.
 * Evaluate the assemblies with Quast, Busco, and Bandage.
 
+{% highlight bash %}
+canu useGrid=false -pacbio-raw "$PACBIO_READS"
+{% endhighlight %}
+
 ### Nanopore data.
 
 * Subsample the data to 10x, 30x, and 70x coverage.
