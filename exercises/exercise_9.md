@@ -50,7 +50,8 @@ abyss-pe name=abyss_k35_cleaned k=35 in='SRR492065_cleaned_R1.fastq.gz SRR492065
 Running MaSuRCA:
 
 {% highlight bash %}
-# MaSuRCA needs a config file - You can use nano instead of cat
+# MaSuRCA needs a config file - You can use nano instead of cat -
+# MaSuRCA needs the full path to the reads
 cat <<-EOF > "${PREFIX}_masurca.cfg"
 DATA
 PE= pe 500 50 $READ1 $READ2
