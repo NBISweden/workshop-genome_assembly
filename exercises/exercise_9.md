@@ -35,6 +35,35 @@ Working directories have been created for each team:
 * Polish using Pilon or Racon.
 * Evaluate the assemblies with Quast, Busco, KAT, Bandage and FRC
 
+Running spades example:
+
+{% highlight bash %}
+spades.py -k 21,33,55 --careful --pe1-1 "$READ1" --pe1-2 "$READ2" -o "${PREFIX}-spades_assembly"
+{% endhighlight %}
+
+Running abyss example:
+
+{% highlight bash %}
+abyss-pe name=abyss_k35_cleaned k=35 in='SRR492065_cleaned_R1.fastq.gz SRR492065_cleaned_R2.fastq.gz'
+{% endhighlight %}
+
+Running MaSuRCA:
+
+{% highlight bash %}
+# MaSuRCA needs a config file - You can use nano instead of cat
+cat <<-EOF > "${PREFIX}_masurca.cfg"
+DATA
+PE= pe 500 50 $READ1 $READ2
+END
+
+PARAMETERS
+GRAPH_KMER_SIZE = auto
+END
+EOF
+masurca "${PREFIX}_masurca.cfg"
+bash assemble.sh
+{% endhighlight %}
+
 ### PacBio data.
 
 * Subsample the data to 10x, 30x, and 70x coverage.
