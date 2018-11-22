@@ -93,7 +93,7 @@ minimap2/minimap2 -x ava-pb -t8 pb-reads.fq pb-reads.fq | gzip -1 > reads.paf.gz
 # Layout
 miniasm/miniasm -f reads.fq reads.paf.gz > reads.gfa
 # GFA to Fasta
-awk ' /^S/ {print ">seq" NR "\n" $3 } ' reads.gfa
+awk ' /^S/ {print ">seq" $2 "\n" $3 } ' reads.gfa
 {% endhighlight %}
 
 Running Wtdbg2:
