@@ -72,9 +72,13 @@ bash assemble.sh
 * Polish with Arrow or Racon.
 * Evaluate the assemblies with Quast, Busco, and Bandage.
 
+Running Canu:
+
 {% highlight bash %}
 canu -p ecoli -d ecoli-pacbio useGrid=false genomeSize=4.6m -pacbio-raw pacbio.fastq
 {% endhighlight %}
+
+Running Minimap:
 
 {% highlight bash %}
 # Overlap for PacBio reads (or use "-x ava-ont" for nanopore read overlapping)
@@ -82,6 +86,8 @@ minimap2/minimap2 -x ava-pb -t8 pb-reads.fq pb-reads.fq | gzip -1 > reads.paf.gz
 # Layout
 miniasm/miniasm -f reads.fq reads.paf.gz > reads.gfa
 {% endhighlight %}
+
+Running Wtdbg2:
 
 {% highlight bash %}
 # assemble long reads
