@@ -96,6 +96,22 @@ Running Wtdbg2:
 ./wtpoa-cns -t 16 -i prefix.ctg.lay -fo prefix.ctg.lay.fa
 {% endhighlight %}
 
+Running Racon:
+
+{% highlight bash %}
+racon [options ...] <sequences> <overlaps> <target sequences>
+
+    <sequences>
+        (reads) input file in FASTA/FASTQ format (can be compressed with gzip)
+        containing sequences used for correction
+    <overlaps>
+        (reads aligned to assembly) input file in MHAP/PAF/SAM format (can be compressed with gzip)
+        containing overlaps between sequences and target sequences
+    <target sequences>
+        (assembly) input file in FASTA/FASTQ format (can be compressed with gzip)
+        containing sequences which will be corrected
+{% endhighlight %}
+
 ### Nanopore data.
 
 * Subsample the data to 10x, 30x, and 70x coverage.
@@ -104,9 +120,18 @@ Running Wtdbg2:
 * Polish with Medaka or Racon.
 * Evaluate the assemblies with Quast, Busco, and Bandage.
 
+Running Canu:
+
 {% highlight bash %}
 canu -p ecoli -d ecoli-oxford useGrid=false genomeSize=4.8m -nanopore-raw oxford.fasta
 {% endhighlight %}
+
+Running Medaka:
+
+{% highlight bash %}
+medaka_consensus -i reads.fasta -d assembly.fasta -o assembly.consensus.fasta -t 10
+{% endhighlight %}
+
 
 ### How to load the tools.
 
@@ -126,6 +151,11 @@ module load bioinfo-tools abyss/2.0.2
 MaSuRCA:
 {% highlight bash %}
 module load bioinfo-tools MaSuRCA/3.2.3
+{% endhighlight %}
+
+Canu:
+{% highlight bash %}
+module load bioinfo-tools canu/1.7
 {% endhighlight %}
 
 Pilon:
